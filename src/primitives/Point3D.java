@@ -2,12 +2,12 @@ package primitives;
 
 import java.util.Objects;
 
-public class Point_3D {
+public class Point3D {
     final Coordinate _x;
     final Coordinate _y;
     final Coordinate _z;
 
-    public Point_3D(Coordinate x, Coordinate y, Coordinate z) {
+    public Point3D(Coordinate x, Coordinate y, Coordinate z) {
         this._x =new Coordinate(x.coord);
         this._y =new Coordinate(y.coord);
         this._z =new Coordinate(z.coord);
@@ -29,7 +29,7 @@ public class Point_3D {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Point_3D point_3D = (Point_3D) o;
+        Point3D point_3D = (Point3D) o;
         return _x.equals(point_3D._x) && _y.equals(point_3D._y) && _z.equals(point_3D._z);
     }
 
