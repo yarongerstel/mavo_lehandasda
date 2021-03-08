@@ -2,17 +2,12 @@ package primitives;
 
 import java.util.Objects;
 
-/**
- * basic Point for RayTracing project in 3D
- *
- * @author Eliezer
- */
 public class Point3D {
     final Coordinate _x;
     final Coordinate _y;
     final Coordinate _z;
 
-    final static Point3D ZERO = new Point3D(0d, 0d, 0d);
+    final public static Point3D ZERO = new Point3D(0d, 0d, 0d);
 
     /**
      * consructor for Point3D
@@ -31,7 +26,9 @@ public class Point3D {
         _z = new Coordinate(z);
     }
 
-    public Coordinate getX() {
+
+
+   /* public Coordinate getX() {
         return _x;
     }
 
@@ -42,6 +39,8 @@ public class Point3D {
     public Coordinate getZ() {
         return _z;
     }
+*/
+
 
     @Override
     public boolean equals(Object o) {
@@ -79,21 +78,26 @@ public class Point3D {
         return Math.sqrt(distanceSquared(point3D));
     }
 
+    /**
+     *
+     * @param pt2
+     * @return Vector The result of subtracting a vector by a point.
+     */
     public Vector subtract(Point3D pt2) {
         if (pt2.equals(this)) {
             throw new IllegalArgumentException("cannot create Vector to Point(0,0,0)");
         }
         return new Vector(new Point3D(
-                pt2._x.coord - _x.coord,
-                pt2._y.coord - _y.coord,
-                pt2._z.coord - _z.coord
+                _x.coord - pt2._x.coord,
+                _y.coord - pt2._y.coord,
+                _z.coord - pt2._z.coord
         ));
     }
 
     /**
-     * TO DO
+     * Adds vector to point
      * @param vector
-     * @return
+     * @return new point3D
      */
     public Point3D add(Vector vector) {
         return new Point3D(
@@ -102,4 +106,5 @@ public class Point3D {
                 _z.coord + vector._head._z.coord
         );
     }
+
 }
