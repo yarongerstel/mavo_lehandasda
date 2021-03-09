@@ -8,16 +8,18 @@ public class Vector {
     Point3D _head;
 
 
-    public Vector(Coordinate x,Coordinate y,Coordinate z ){
-        if (x.coord==0 && y.coord==0 && z.coord==0)
+    public Vector(Coordinate x, Coordinate y, Coordinate z) {
+        if (x.coord == 0 && y.coord == 0 && z.coord == 0)
             throw new IllegalArgumentException("Vector head cannot be Point(0,0,0)");
-        this._head=new Point3D(x,y,z);
+        this._head = new Point3D(x, y, z);
     }
-    public Vector(double x,double y,double z ){
-        if (x==0 && y==0 && z==0)
+
+    public Vector(double x, double y, double z) {
+        if (x == 0 && y == 0 && z == 0)
             throw new IllegalArgumentException("Vector head cannot be Point(0,0,0)");
-        this._head=new Point3D(x,y,z);
+        this._head = new Point3D(x, y, z);
     }
+
     public Vector(Point3D head) {
         _head = head;
     }
