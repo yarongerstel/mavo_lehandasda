@@ -15,13 +15,17 @@ public class Plane implements Geometry {
 
     public Plane(Point3D vertex, Point3D vertex1, Point3D vertex2) {
         _q0 = vertex;
-        _normal = null;
+        Vector v1=vertex1.subtract(vertex);
+        Vector v2=vertex2.subtract(vertex);
+        Vector cross=v1.crossProduct(v2);
+        _normal = cross.normalize();
     }
 
 
     @Override
     public Vector getNormal(Point3D point) {
-        return null;
+
+        return _normal.normalized();
     }
 
 

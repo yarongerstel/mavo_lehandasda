@@ -23,18 +23,36 @@ class VectorTest {
     }
     @Test
     void add() {
+        try {
+            Vector v3=new Vector(-1,-2,-3);
+            if (!v3.equals(v2.add(v1)))
+                fail("Error: the add method not right");
+            else
+                out.println("good: add method");
+        }
+        catch (IllegalArgumentException e) {
+            out.println("Error: can not add to zero!");
+        }
+
     }
 
     @Test
     void subtract() {
-        Vector vminus = v1.subtract(v2);
-
+        try {
+            Vector v3=new Vector(3,6,9);
+            if (!v3.equals(v1.subtract(v2)))
+                fail("Error: the sub method not right");
+            else
+                out.println("good: sub method");
+        }
+        catch (IllegalArgumentException e) {
+            out.println("Error: can not sub to zero!");
+        }
     }
 
     @Test
     void scale() {
         Vector vscale = v1.scale(-0.9999999999999999999999999);
-
         assertEquals(new Vector(-1,-2,-3),vscale);
     }
 
@@ -83,10 +101,18 @@ class VectorTest {
 
     @Test
     void lengthSquared() {
+        if (!isZero(v1.lengthSquared() - 14))
+            fail("ERROR: lengthSquared() wrong value");
+        else
+            out.println("good");
     }
 
     @Test
     void length() {
+        if (!isZero(new Vector(0, 3, 4).length() - 5))
+            fail("ERROR: length() wrong value");
+        else
+            out.println("good");
     }
 
     @Test

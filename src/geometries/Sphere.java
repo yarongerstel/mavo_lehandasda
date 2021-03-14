@@ -6,6 +6,12 @@ import primitives.Vector;
 public class Sphere implements Geometry{
 
     Point3D center;
+
+    public Sphere(Point3D center, double radius) {
+        this.center = center;
+        this.radius = radius;
+    }
+
     double radius;
 
     public Point3D getCenter() {
@@ -26,6 +32,6 @@ public class Sphere implements Geometry{
 
     @Override
     public Vector getNormal(Point3D point) {
-        return null;
+        return point.subtract(center).normalize();
     }
 }

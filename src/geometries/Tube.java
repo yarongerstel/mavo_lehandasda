@@ -6,11 +6,11 @@ import primitives.Vector;
 
 public class Tube implements Geometry{
 
-    Ray axisRay;
+    Ray _axisRay;
     double radius;
 
     public Ray getAxisRay() {
-        return axisRay;
+        return _axisRay;
     }
 
     public double getRadius() {
@@ -20,13 +20,22 @@ public class Tube implements Geometry{
     @Override
     public String toString() {
         return "Tube{" +
-                "Ray: " + axisRay +
+                "Ray: " + _axisRay +
                 ", Radius: " + radius +
                 '}';
     }
 
     @Override
     public Vector getNormal(Point3D point) {
-        return null;
+        Vector v = _axisRay.getDir();
+        Point3D P0 = _axisRay.getP0();
+        Point3D P = point;
+        Vector PMinusP0 = P.subtract(P0);
+        double t = v.dotProduct(PMinusP0);
+        Point3D O = P0.add(v.scale(t));
+        Vector sub = P.subtract(O);
+        sub.normalize();
+        return sub;
     }
+
 }
