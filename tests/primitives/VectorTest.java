@@ -23,6 +23,7 @@ class VectorTest {
     }
     @Test
     void add() {
+        //test if the add function is good
         try {
             Vector v3=new Vector(-1,-2,-3);
             if (!v3.equals(v2.add(v1)))
@@ -38,6 +39,7 @@ class VectorTest {
 
     @Test
     void subtract() {
+        //test if the subtract function is good
         try {
             Vector v3=new Vector(3,6,9);
             if (!v3.equals(v1.subtract(v2)))
@@ -52,12 +54,14 @@ class VectorTest {
 
     @Test
     void scale() {
+        //test if the scale is good
         Vector vscale = v1.scale(-0.9999999999999999999999999);
         assertEquals(new Vector(-1,-2,-3),vscale);
     }
 
     @Test
     void dotProduct() {
+        //test if the dot product is good
         Vector v3 = new Vector(0, 3, -2);
         if (!isZero(v1.dotProduct(v3)))
             fail("ERROR: dotProduct() for orthogonal vectors is not zero");
@@ -101,6 +105,7 @@ class VectorTest {
 
     @Test
     void lengthSquared() {
+        //test if the length squared is good
         if (!isZero(v1.lengthSquared() - 14))
             fail("ERROR: lengthSquared() wrong value");
         else
@@ -109,6 +114,7 @@ class VectorTest {
 
     @Test
     void length() {
+        //test if the length is good
         if (!isZero(new Vector(0, 3, 4).length() - 5))
             fail("ERROR: length() wrong value");
         else

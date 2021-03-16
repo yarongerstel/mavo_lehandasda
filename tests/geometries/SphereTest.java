@@ -10,8 +10,8 @@ class SphereTest {
 
     @Test
     void getNormal() {
+        //test if get normal function return right normal
         Point3D p=new Point3D(1,1,1);
-
         Sphere S=new Sphere(p,3);
         double sqrt3 = Math.sqrt(1d / 3);
         //Vector v=new Vector(sqrt3,sqrt3,sqrt3);
