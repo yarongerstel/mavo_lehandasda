@@ -3,12 +3,12 @@ package primitives;
 import java.util.Objects;
 
 public class Ray {
-    Point3D p0;
-    Vector dir;
+    Point3D _p0;
+    Vector _dir;
 
     public Ray(Point3D p0, Vector dir) {
-        this.p0 = p0;
-        this.dir = dir.normalize();
+        _p0 = p0;
+        _dir = dir.normalize();
     }
 
     @Override
@@ -16,28 +16,25 @@ public class Ray {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ray ray = (Ray) o;
-        return p0.equals(ray.p0) && dir.equals(ray.dir);
+        return _p0.equals(ray._p0) && _dir.equals(ray._dir);
     }
 
     public Point3D getP0() {
-        return p0;
+        return _p0;
     }
 
     public Vector getDir() {
-        return dir;
+        return _dir;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(p0, dir);
+        return Objects.hash(_p0, _dir);
     }
 
     @Override
     public String toString() {
-        return "Ray{" +
-                "Point:" + p0 +
-                ", Direction:" + dir +
-                '}';
+        return "Point: " + _p0 + '\t' + " Direction: " + _dir;
     }
 }
 

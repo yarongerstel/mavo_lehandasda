@@ -5,33 +5,29 @@ import primitives.Vector;
 
 public class Sphere implements Geometry{
 
-    Point3D center;
+    Point3D _center;
+    double _radius;
 
     public Sphere(Point3D center, double radius) {
-        this.center = center;
-        this.radius = radius;
+        this._center = center;
+        this._radius = radius;
     }
 
-    double radius;
-
     public Point3D getCenter() {
-        return center;
+        return _center;
     }
 
     public double getRadius() {
-        return radius;
+        return _radius;
     }
 
     @Override
     public String toString() {
-        return "Sphere{" +
-                "center: " + center +
-                ", radius: " + radius +
-                '}';
+        return "Center: " + _center + ", Radius: " + _radius;
     }
 
     @Override
     public Vector getNormal(Point3D point) {
-        return point.subtract(center).normalize();
+        return point.subtract(_center).normalize();
     }
 }

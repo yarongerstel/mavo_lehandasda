@@ -7,27 +7,24 @@ import primitives.Vector;
 public class Tube implements Geometry{
 
     Ray _axisRay;
-    double radius;
+    double _radius;
 
     public Ray getAxisRay() {
         return _axisRay;
     }
 
     public double getRadius() {
-        return radius;
+        return _radius;
     }
 
-    public Tube(Ray _axisRay, double radius) {
-        this._axisRay = _axisRay;
-        this.radius = radius;
+    public Tube(Ray axisRay, double radius) {
+        _axisRay = axisRay;
+        _radius = radius;
     }
 
     @Override
     public String toString() {
-        return "Tube{" +
-                "Ray: " + _axisRay +
-                ", Radius: " + radius +
-                '}';
+        return _axisRay.toString() + '\t' + "Radius: " + _radius;
     }
 
     @Override

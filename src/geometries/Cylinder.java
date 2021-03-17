@@ -17,8 +17,7 @@ public class Cylinder extends Tube {
 
     @Override
     public String toString() {
-        return "Cylinder{" +
-                "height: " + height +"\t"+ super.toString() +'}';
+        return super.toString() + '\t' + "Height: " + height;
     }
 
 }
