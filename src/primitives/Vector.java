@@ -2,8 +2,6 @@ package primitives;
 
 import java.util.Objects;
 
-import static primitives.Point3D.ZERO;
-
 public class Vector {
     Point3D _head;
 
@@ -90,8 +88,8 @@ public class Vector {
         double v1 = v._head._x.coord;
         double v2 = v._head._y.coord;
         double v3 = v._head._z.coord;
-        if(u1/v1 == u2/v2 && u2/v2 == u3/v3 && u1/v1 == u3/v3)
-            throw new IllegalArgumentException("Error: parallel vectors");
+     //   if(u1/v1 == u2/v2 && u2/v2 == u3/v3 && u1/v1 == u3/v3)
+       //     throw new IllegalArgumentException("Error: parallel vectors");
 
         return new Vector(new Point3D(
                 u2 * v3 - u3 * v2,

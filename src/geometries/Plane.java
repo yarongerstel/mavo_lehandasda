@@ -1,7 +1,10 @@
 package geometries;
 
 import primitives.Point3D;
+import primitives.Ray;
 import primitives.Vector;
+
+import java.util.List;
 
 public class Plane implements Geometry {
 
@@ -29,4 +32,23 @@ public class Plane implements Geometry {
     }
 
 
+    /***
+     *
+     * @param ray
+     * @return List of point the ray Intersections
+     */
+    @Override
+    public List<Point3D> findIntersections(Ray ray) {
+        if (ray.getP0()==this._q0)
+            return null;
+        double isParallel=ray.getDir().dotProduct(_normal);
+        if(isParallel==0)
+            return null;
+        double t=(this._normal.dotProduct(this._q0.subtract(ray.getP0())))/(this._normal.dotProduct(ray.getDir()));
+
+        if(t>0) {
+            return List.of(ray.getTargetPoint(t));
+        }
+        return null;
+    }
 }

@@ -4,6 +4,8 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.List;
+
 public class Tube implements Geometry{
 
     Ray _axisRay;
@@ -38,4 +40,13 @@ public class Tube implements Geometry{
         return sub;
     }
 
+    /***
+     *
+     * @param ray
+     * @return List of point the ray Intersections
+     */
+    @Override
+    public List<Point3D> findIntersections(Ray ray) {
+        return null;
+    }
 }

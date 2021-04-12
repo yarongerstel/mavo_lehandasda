@@ -1,7 +1,5 @@
 package primitives;
 
-import java.util.Objects;
-
 public class Point3D {
     final Coordinate _x;
     final Coordinate _y;
@@ -25,21 +23,16 @@ public class Point3D {
         _y = new Coordinate(y);
         _z = new Coordinate(z);
     }
-
-
-
-   /* public Coordinate getX() {
-        return _x;
+    /**
+     * copy constructor
+     * @param other
+     */
+    public Point3D(Point3D other) {
+        this._x = other._x;
+        this._y = other._y;
+        this._z = other._z;
     }
 
-    public Coordinate getY() {
-        return _y;
-    }
-
-    public Coordinate getZ() {
-        return _z;
-    }
-*/
 
 
     @Override
@@ -106,5 +99,19 @@ public class Point3D {
                 _z.coord + vector._head._z.coord
         );
     }
+
+
+    public double getX() {
+        return _x.coord;
+    }
+
+    public double getY() {
+        return _y.coord;
+    }
+
+    public double getZ() {
+        return _z.coord;
+    }
+
 
 }
