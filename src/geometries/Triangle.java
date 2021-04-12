@@ -8,10 +8,12 @@ import java.util.List;
 
 import static primitives.Util.isZero;
 
-public class Triangle extends Polygon {
+public class Triangle extends Polygon implements Geometry {
+
     public Triangle(Point3D... vertices) {
         super(vertices);
     }
+
     /**
      * constructor
      * @param p1 vertic 1
@@ -31,11 +33,12 @@ public class Triangle extends Polygon {
         List<Point3D> intersections = plane.findIntersections(ray);
         if (intersections == null)
             return null;
-        Vector v = ray.getDir();
-        Point3D p0 = ray.getP0();
-        Vector v1 = p0.subtract(vertices.get(1));
-        Vector v2 = p0.subtract(vertices.get(2));
-        Vector v3 = p0.subtract(vertices.get(2));
+        Vector v = ray.getDirection();
+        Point3D p0 = ray.getPoint();
+
+        Vector v1 = vertices.get(0).subtract(p0);
+        Vector v2 = vertices.get(1).subtract(p0);
+        Vector v3 = vertices.get(2).subtract(p0);
 
         double s1 = v.dotProduct(v1.crossProduct(v2));
         if (isZero(s1)) return null;
@@ -45,6 +48,8 @@ public class Triangle extends Polygon {
         if (isZero(s3)) return null;
         return ((s1 > 0 && s2 > 0 && s3 > 0) || (s1 < 0 && s2 < 0 && s3 < 0)) ? intersections : null;
     }
+
+
 
     /**
      * getter

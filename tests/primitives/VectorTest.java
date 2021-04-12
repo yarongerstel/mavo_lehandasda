@@ -83,23 +83,22 @@ class VectorTest {
     @Test
     void crossProduct() {
 
-        // ============ Equivalence Partitions Tests ==============
-        Vector v3 = new Vector(0, 3, -2);
-        Vector vr = v1.crossProduct(v3);
+        Vector v1 = new Vector(3.5, -5.0, 10.0);
+        Vector v2 = new Vector(2.5,7,0.5);
+        Vector v3 = v1.crossProduct(v2);
 
-        // Test that length of cross-product is proper (orthogonal vectors taken for simplicity)
-        assertEquals( v1.length() * v3.length(), vr.length(), 0.00001,"crossProduct() wrong result length");
+        assertEquals( 0, v3.dotProduct(v2), 1e-10);
+        assertEquals( 0, v3.dotProduct(v1), 1e-10);
 
-        // Test cross-product result orthogonality to its operands
-        assertTrue(isZero(vr.dotProduct(v1)), "crossProduct() result is not orthogonal to 1st operand");
-        assertTrue(isZero(vr.dotProduct(v3)), "crossProduct() result is not orthogonal to 2nd operand");
+        Vector v4 = v2.crossProduct(v1);
 
-        // =============== Boundary Values Tests ==================
-        // test zero vector from cross-productof co-lined vectors
         try {
-            v1.crossProduct(v2);
-            fail("crossProduct() for parallel vectors does not throw an exception");
-        } catch (Exception e) {}
+            v3.add(v4);
+            fail("Vector (0,0,0) not valid");
+        }
+        catch  (IllegalArgumentException e) { }
+//        assertTrue(v3.length() >84);
+        assertEquals(84,v3.length(),0.659);
 
     }
 

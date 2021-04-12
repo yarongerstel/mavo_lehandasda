@@ -8,7 +8,7 @@ public class Ray {
     Point3D _p0;
     Vector _dir;
 
-    public Ray(Point3D p0, Vector dir) {
+    public Ray(Vector dir,Point3D p0) {
         _p0 = p0;
         _dir = dir.normalize();
     }
@@ -27,13 +27,12 @@ public class Ray {
     public Point3D getTargetPoint(double length) {
         return isZero(length ) ? _p0 : _p0.add(_dir.scale(length));
     }
-
-    public Point3D getP0() {
-        return _p0;
+    public Vector getDirection() {
+        return _dir;
     }
 
-    public Vector getDir() {
-        return _dir;
+    public Point3D getPoint() {
+        return _p0;
     }
 
     @Override
@@ -51,7 +50,7 @@ public class Ray {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ray ray = (Ray) o;
-        return _p0.equals(ray._p0) && _dir.equals(ray._dir);
+        return _p0.equals(ray.getPoint()) && _dir.equals(ray._dir);
     }
 }
 

@@ -20,6 +20,7 @@ public class Tube implements Geometry{
     }
 
     public Tube(Ray axisRay, double radius) {
+        if(radius<=0) throw new IllegalArgumentException("can't tube withe negative radius");
         _axisRay = axisRay;
         _radius = radius;
     }
@@ -31,8 +32,8 @@ public class Tube implements Geometry{
 
     @Override
     public Vector getNormal(Point3D point) {
-        Vector v = _axisRay.getDir();
-        Point3D P0 = _axisRay.getP0();
+        Vector v = _axisRay.getDirection();
+        Point3D P0 = _axisRay.getPoint();
         double t = v.dotProduct(point.subtract(P0));
         Point3D O = P0.add(v.scale(t));
         Vector sub = point.subtract(O);
