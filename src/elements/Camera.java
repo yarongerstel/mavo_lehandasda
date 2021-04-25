@@ -55,12 +55,24 @@ public class Camera {
     }
 
     //chaining methods
+
+    /**
+     *
+     * @param width
+     * @param height
+     * @return The camera after updating the height and width of the plan
+     */
     public Camera setViewPlaneSize(double width, double height) {
         _height = height;
         _width = width;
         return this;
     }
 
+    /**
+     *
+     * @param distance
+     * @return The camera after updating its distance from the plan
+     */
     public Camera setDistance(double distance) {
         _distance = distance;
         return this;
