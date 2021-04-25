@@ -1,6 +1,5 @@
 package geometries;
 
-import org.junit.jupiter.api.Test;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
@@ -9,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 class GeometriesTest {
-    
+
     @org.junit.jupiter.api.Test
     void findIntsersections() {
         Ray ray = new Ray(new Vector(1,0,0.25), new Point3D(2,0,0));
