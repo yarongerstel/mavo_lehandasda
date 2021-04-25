@@ -1,63 +1,102 @@
 package elements;
 
-import primitives.Point3D;
-import primitives.Ray;
-import primitives.Util;
-import primitives.Vector;
+import primitives.*;
+
+import static primitives.Util.isZero;
 
 public class Camera {
-    private
-    final Point3D _location;
-    final Vector _Vto;
-    final Vector _Vup;
-    final Vector _Vright;
-    double _ViewPlaneSize;
-    double _Distance;
+    final private Point3D _P0;
+    final private Vector _vUP;
+    final private Vector _vTO;
+    final private Vector _vRIGHT;
+    private double _width;
+    private double _height;
+    private double _distance;
 
     /**
      * constructor
-     * @param location of the camera
-     * @param to the vector from the camera To the center of the image
-     * @param up the vector from the camera to Up (90 degrees)
+     * @param p0 location of the camera
+     * @param vTO the vector from the camera To the objects
+     * @param vUP the vector from the camera to Up (90 degrees)
      */
-    public Camera(Point3D location, Vector to, Vector up) {
-        //Makes sure the vectors are indeed perpendicular otherwise throws an error
-        if (Util.alignZero(up.dotProduct(to))!=0)
-            throw new IllegalArgumentException("vectors are not vertical");
-        _Vup =up.normalized();
-        _Vto =to.normalized();
-        _Vright =(to.crossProduct(up)).normalized();//Creates a balance vector by cross-calculating the vector direction vector up
-        this._location = location;
+    public Camera(Point3D p0, Vector vTO, Vector vUP) {
+        if(!isZero(vUP.dotProduct(vTO))){
+            throw new IllegalArgumentException("up vector and  to vector arent orthogonal");
+        }
+
+        _P0 = p0;
+        _vUP = vUP.normalized();
+        _vTO = vTO.normalized();
+        _vRIGHT = _vTO.crossProduct(_vUP);
     }
-    public Camera setVpSize(double width, double height){
-        this._ViewPlaneSize=width*height;
+
+    public Point3D getP0() {
+        return _P0;
+    }
+
+    public Vector getvUP() {
+        return _vUP;
+    }
+
+    public Vector getvTO() {
+        return _vTO;
+    }
+
+    public Vector getvRIGHT() {
+        return _vRIGHT;
+    }
+
+    public double getWidth() {
+        return _width;
+    }
+
+    public double getHeight() {
+        return _height;
+    }
+
+    //chaining methods
+    public Camera setViewPlaneSize(double width, double height) {
+        _height = height;
+        _width = width;
         return this;
     }
-    public Camera setVpDistance(double distance){
-        this._Distance=distance;
+
+    public Camera setDistance(double distance) {
+        _distance = distance;
         return this;
     }
+
+    public double getDistance() {
+        return _distance;
+    }
+
+    /**
+     *
+     * @param nX number of width pixels
+     * @param nY number of height pixels
+     * @param j the index that the ray go through
+     * @param i the index that the ray go through
+     * @return  the ray prom the camera through the wanted pixel
+     */
     public Ray constructRayThroughPixel(int nX, int nY, int j, int i){
 
+        Point3D Pc = _P0.add(_vTO.scale(_distance));
+
+        double Rx = _width / nX;
+        double Ry = _height / nY;
+
+        Point3D Pij = Pc;
+        double Yi = -Ry * (i - (nY - 1) / 2d);
+        double Xj = Rx * (j - (nX - 1) / 2d);
+
+        if(!isZero(Xj)){
+            Pij = Pij.add(_vRIGHT.scale(Xj));
+        }
+        if(!isZero(Yi)){
+            Pij = Pij.add(_vUP.scale(Yi));
+        }
+        Vector Vij = Pij.subtract(_P0);
+
+        return  new Ray( Vij,_P0);
     }
-
-
-
-    public Point3D get_location() {
-        return _location;
-    }
-
-    public Vector get_Vto() {
-        return _Vto;
-    }
-
-    public Vector get_Vup() {
-        return _Vup;
-    }
-
-    public Vector get_Vright() {
-        return _Vright;
-    }
-
-
 }
