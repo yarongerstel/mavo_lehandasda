@@ -58,8 +58,8 @@ public class Camera {
 
     /**
      *
-     * @param width
-     * @param height
+     * @param width the plan
+     * @param height the plan
      * @return The camera after updating the height and width of the plan
      */
     public Camera setViewPlaneSize(double width, double height) {
@@ -70,7 +70,7 @@ public class Camera {
 
     /**
      *
-     * @param distance
+     * @param distance of the plan from the camera
      * @return The camera after updating its distance from the plan
      */
     public Camera setDistance(double distance) {

@@ -1,7 +1,9 @@
 package elements;
 
 import geometries.Intersectable;
+import geometries.Plane;
 import geometries.Sphere;
+import geometries.Triangle;
 import org.junit.jupiter.api.Test;
 import primitives.Point3D;
 import primitives.Ray;
@@ -12,6 +14,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CameraIntegrationsTest {
+    /**
+     * Finds multiple cuts with sphere
+     */
     @Test
     void testSphereWithCam(){
         //TC01: 1 camera ray crosses the sphere(2 intersection)
@@ -32,12 +37,51 @@ public class CameraIntegrationsTest {
         assertEquals(numOfIntersections(sphere,cam), 10, "wrong number of intersections");
 
         //TC04: the camera is inside the sphere(all rays intersect once with the sphere
-        sphere=new Sphere(new Point3D(0,0,0),4);
+        sphere=new Sphere(new Point3D(0,0,-1),4);
         assertEquals(numOfIntersections(sphere,cam), 9, "wrong number of intersections");
 
         //TC05: no intersection of the camera rays with the sphere
         sphere=new Sphere(new Point3D(0,0,1),0.5);
         assertEquals(numOfIntersections(sphere,cam), 0, "wrong number of intersections");
+
+    }
+    /**
+     * Finds multiple cuts with plan
+     */
+    @Test
+    public void cameraRaysPlaneIntersections(){
+        Camera cam = new Camera(Point3D.ZERO, new Vector(0, 0, -1), new Vector(0, 1, 0))
+                .setDistance(1)
+                .setViewPlaneSize(3, 3);
+
+        //TC01: the plane is ortogonal to the towards vertor of the camera(9 intersection)
+        Plane plane=new Plane(new Point3D(1,3,-3),new Point3D(5,2,-3),new Point3D(7,1,-3));
+        assertEquals(9,numOfIntersections(plane,cam),"9 intersections");
+
+        //TC02: the plane have a little shift (still 9 intersection)
+        plane=new Plane(new Point3D(1,3,-3),new Point3D(5,2,-3.4),new Point3D(7,1,-3.4));
+        assertEquals(9,numOfIntersections(plane,cam),"9 intersections");
+
+//        //TC03: the place have a bif shipt the 3 lower rays dousnt intersect with the plane(6 intersection)
+        plane=new Plane(new Point3D(1,3,-3),new Point3D(5,-2,-10),new Point3D(-7,-1,-10));
+        assertEquals(6,numOfIntersections(plane,cam),"6 intersections");
+    }
+    /**
+     * Finds multiple cuts with Triangle
+     */
+    @Test
+    public void cameraRaysTriangleIntersections(){
+        Camera cam = new Camera(Point3D.ZERO, new Vector(0, 0, -1), new Vector(0, 1, 0))
+                .setDistance(1)
+                .setViewPlaneSize(3, 3);
+
+        //TC01: only the ray that go through the center intersect with the triangle
+        Triangle triangle=new Triangle(new Point3D(0,1,-2),new Point3D(1,-1,-2),new Point3D(-1,-1,-2));
+        assertEquals(1,numOfIntersections(triangle,cam),"1 intersections");
+
+        //TC02: the ray that go through the center and the one above her intersect with the triangle
+        triangle=new Triangle(new Point3D(0,20,-2),new Point3D(1,-1,-2),new Point3D(-1,-1,-2));
+        assertEquals(2,numOfIntersections(triangle,cam),"2 intersections");
 
     }
 
