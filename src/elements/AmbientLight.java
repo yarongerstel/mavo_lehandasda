@@ -5,15 +5,12 @@ import primitives.Color;
 /**
  * Department of Environmental Lighting
  */
-public class AmbientLight {
-
-    Color intensity;
-
+public class AmbientLight extends Light {
     /**
      * Default constructor
      */
     public AmbientLight() {
-        intensity = Color.BLACK;
+        super(Color.BLACK);
     }
 
     /**
@@ -23,12 +20,6 @@ public class AmbientLight {
      * @param ka The light intensity damping parameter
      */
     public AmbientLight(Color ia, double ka) {
-        this.intensity = ia.scale(ka);
+        super(ia.scale(ka));
     }
-
-    public Color getIntensity() {
-        return this.intensity;
-    }
-
-
 }
