@@ -23,19 +23,23 @@ public class Ray {
         this._p0 = other._p0;
     }
 
-    public Point3D findClosestPoint(List<Point3D> lis){
-        if( lis==null){return null;}
-        double min=lis.get(0).distance(_p0);
-        Point3D pmin=lis.get(0);
-        for(int i=lis.size()-1; i>0;i--)
-            if(lis.get(i).distance(_p0)<min) {
+    /**
+     *
+     * @param lis list of points
+     * @return the closest point to the beginning of the ray
+     */
+    public Point3D findClosestPoint(List<Point3D> lis) {
+        if (lis == null) {
+            return null;
+        }
+        double min = lis.get(0).distance(_p0);
+        Point3D pmin = lis.get(0);
+        for (int i = lis.size() - 1; i > 0; i--)
+            if (lis.get(i).distance(_p0) < min) {
                 min = lis.get(i).distance(_p0);
                 pmin = lis.get(i);
             }
         return pmin;
-
-
-
     }
 
 

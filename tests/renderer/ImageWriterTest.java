@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 import primitives.Color;
 
 class ImageWriterTest {
+    /**
+     * Tests image creation with a uniform background and a grid of a different color
+     */
     @Test
     void createImage(){
         ImageWriter imageTest = new ImageWriter("hello image",800,500);
