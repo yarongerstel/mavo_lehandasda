@@ -3,24 +3,17 @@ package renderer;
 import elements.Camera;
 import primitives.Color;
 import primitives.Ray;
-import scene.Scene;
 
 import java.util.MissingFormatArgumentException;
 import java.util.MissingResourceException;
 
 public class Render {
-    ImageWriter _imageWriter = null;
-    Scene _scene = null;
-    Camera _camera = null;
-    RayTracerBase _rayTracerBase = null;
+    private ImageWriter _imageWriter = null;
+    private Camera _camera = null;
+    private RayTracerBase _rayTracerBase = null;
 
     public Render setImageWriter(ImageWriter imageWriter) {
         _imageWriter = imageWriter;
-        return this;
-    }
-
-    public Render setScene(Scene scene) {
-        _scene = scene;
         return this;
     }
 
@@ -38,9 +31,6 @@ public class Render {
         try {
             if (_imageWriter == null) {
                 throw new MissingResourceException("missing resource", ImageWriter.class.getName(), "");
-            }
-            if (_scene == null) {
-                throw new MissingResourceException("missing resource", Scene.class.getName(), "");
             }
             if (_camera == null) {
                 throw new MissingResourceException("missing resource", Camera.class.getName(), "");
@@ -63,19 +53,25 @@ public class Render {
             throw new UnsupportedOperationException("Not implemented yet" + e.getClassName());
         }
     }
-    public void printGrid(int interval, Color color){
-        if(_imageWriter==null){throw new MissingFormatArgumentException("_imageWriter null!!");}
-        int nX=_imageWriter.getNx();
-        int nY=_imageWriter.getNy();
-        for (int i = 0; i <nY ; i++) {
-            for (int j = 0; j <nX ; j++) {
-                if(j % interval==0||i % interval==0 )
-                    _imageWriter.writePixel(j,i,color);
+
+    public void printGrid(int interval, Color color) {
+        if (_imageWriter == null) {
+            throw new MissingFormatArgumentException("_imageWriter null!!");
+        }
+        int nX = _imageWriter.getNx();
+        int nY = _imageWriter.getNy();
+        for (int i = 0; i < nY; i++) {
+            for (int j = 0; j < nX; j++) {
+                if (j % interval == 0 || i % interval == 0)
+                    _imageWriter.writePixel(j, i, color);
             }
         }
     }
-    public void writeToImage(){
-        if(_imageWriter==null){throw new MissingFormatArgumentException("_imageWriter null!!");}
+
+    public void writeToImage() {
+        if (_imageWriter == null) {
+            throw new MissingFormatArgumentException("_imageWriter null!!");
+        }
         _imageWriter.writeToImage();
     }
 }

@@ -3,28 +3,29 @@ package primitives;
 import java.util.List;
 import java.util.Objects;
 
+import static geometries.Intersectable.GeoPoint;
 import static primitives.Util.isZero;
 
 public class Ray {
     Point3D _p0;
     Vector _dir;
 
-    public Ray(Vector dir,Point3D p0) {
+    public Ray(Vector dir, Point3D p0) {
         _p0 = p0;
         _dir = dir.normalize();
     }
 
     /**
      * copy constructor
+     *
      * @param other
      */
-    public Ray(Ray other){
+    public Ray(Ray other) {
         this._dir = other._dir;
         this._p0 = other._p0;
     }
 
     /**
-     *
      * @param lis list of points
      * @return the closest point to the beginning of the ray
      */
@@ -42,11 +43,26 @@ public class Ray {
         return pmin;
     }
 
+    public GeoPoint findClosestGeoPoint(List<GeoPoint> lis) {
+        if (lis == null) {
+            return null;
+        }
+        double min = Double.MAX_VALUE;
+        GeoPoint pmin = null;
+        for (GeoPoint gp : lis) {
+            double d = gp.point.distance(_p0);
+            if (d <= min) {
+                pmin = gp;
+            }
+        }
+        return pmin;
+    }
 
 
     public Point3D getTargetPoint(double length) {
-        return isZero(length ) ? _p0 : _p0.add(_dir.scale(length));
+        return isZero(length) ? _p0 : _p0.add(_dir.scale(length));
     }
+
     public Vector getDirection() {
         return _dir;
     }

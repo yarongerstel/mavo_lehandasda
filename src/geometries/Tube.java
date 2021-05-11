@@ -6,7 +6,7 @@ import primitives.Vector;
 
 import java.util.List;
 
-public class Tube implements Geometry{
+public class Tube extends Geometry{
 
     Ray _axisRay;
     double _radius;
@@ -47,7 +47,8 @@ public class Tube implements Geometry{
      * @return List of point the ray Intersections
      */
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+        //todo
         return null;
     }
 }

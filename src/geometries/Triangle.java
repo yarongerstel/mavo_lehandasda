@@ -8,7 +8,7 @@ import java.util.List;
 
 import static primitives.Util.isZero;
 
-public class Triangle extends Polygon implements Geometry {
+public class Triangle extends Polygon {
 
     public Triangle(Point3D... vertices) {
         super(vertices);
@@ -29,8 +29,8 @@ public class Triangle extends Polygon implements Geometry {
      * @return list of Intsersections
      */
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
-        List<Point3D> intersections = plane.findIntersections(ray);
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+        List<GeoPoint> intersections = plane.findGeoIntersections(ray);
         if (intersections == null)
             return null;
         Vector v = ray.getDirection();
@@ -46,7 +46,9 @@ public class Triangle extends Polygon implements Geometry {
         if (isZero(s2)) return null;
         double s3 = v.dotProduct(v3.crossProduct(v1));
         if (isZero(s3)) return null;
-        return ((s1 > 0 && s2 > 0 && s3 > 0) || (s1 < 0 && s2 < 0 && s3 < 0)) ? intersections : null;
+        return ((s1 > 0 && s2 > 0 && s3 > 0) || (s1 < 0 && s2 < 0 && s3 < 0))
+                ? List.of(new GeoPoint(this,intersections.get(0).point))
+                : null;
     }
 
 

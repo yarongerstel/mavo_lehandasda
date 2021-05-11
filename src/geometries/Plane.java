@@ -6,7 +6,7 @@ import primitives.Vector;
 
 import java.util.List;
 
-public class Plane implements Geometry {
+public class Plane extends Geometry {
 
     final Point3D _p0;
     final Vector _normal;
@@ -39,18 +39,18 @@ public class Plane implements Geometry {
      * @param ray
      * @return List of point the ray Intersections
      */
-    @Override
 
-    public List<Point3D> findIntersections(Ray ray) {
-        if (ray.getPoint()==this._p0)
+    @Override
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+        if (ray.getPoint()==_p0)
             return null;
         double isParallel=ray.getDirection().dotProduct(_normal);
         if(isParallel==0)
             return null;
-        double t=(this._normal.dotProduct(this._p0.subtract(ray.getPoint())))/(this._normal.dotProduct(ray.getDirection()));
+        double t=(_normal.dotProduct(_p0.subtract(ray.getPoint())))/(_normal.dotProduct(ray.getDirection()));
 
         if(t>0) {
-            return List.of(ray.getPoint().add(ray.getDirection().scale(t)));
+            return List.of(new GeoPoint(this,ray.getPoint().add(ray.getDirection().scale(t))));
         }
         return null;
     }

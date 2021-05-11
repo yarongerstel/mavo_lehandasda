@@ -1,10 +1,10 @@
 package geometries;
 
-import primitives.Point3D;
 import primitives.Ray;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Geometries implements Intersectable{
@@ -22,17 +22,20 @@ public class Geometries implements Intersectable{
     /***
      *
      * @param ray
-     * @return List of point the ray Intersections
+     * @return List of GeoPoint the ray Intersections
      */
+
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
-        List<Point3D> answer = new ArrayList<>();
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+        List<GeoPoint> answer = null;
         for (var shape: intersectables) {
-            if(shape.findIntersections(ray)!=null)
-                answer.addAll(shape.findIntersections(ray));
+            if (shape.findGeoIntersections(ray) != null) {
+                if(answer==null){
+                    answer=new LinkedList<>();
+                }
+                answer.addAll(shape.findGeoIntersections(ray));
+            }
         }
-        if(answer.size() > 0)
-            return answer;
-        return null;
+        return answer;
     }
 }

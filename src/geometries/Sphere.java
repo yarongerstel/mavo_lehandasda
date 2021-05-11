@@ -7,7 +7,7 @@ import primitives.Vector;
 
 import java.util.List;
 
-public class Sphere implements Geometry{
+public class Sphere extends Geometry{
 
     Point3D _center;
     double _radius;
@@ -45,10 +45,11 @@ public class Sphere implements Geometry{
      * @param ray
      * @return List of point the ray Intersections
      */
+
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
         if (ray.getPoint().equals(this._center))
-            return List.of(ray.getTargetPoint(_radius));
+            return List.of(new GeoPoint(this,ray.getTargetPoint(_radius)));
         Vector u = _center.subtract(ray.getPoint());
         double tm = ray.getDirection().dotProduct(u);
         double d = Math.sqrt(u.lengthSquared() - tm * tm);
@@ -59,10 +60,10 @@ public class Sphere implements Geometry{
         if (t2 <= 0 && t1 <= 0)
             return null;
         if (t1 > 0&&t2<=0)
-            return List.of(ray.getTargetPoint(t1));
+            return List.of(new GeoPoint(this,ray.getTargetPoint(t1)));
         if (t2 > 0&&t1<=0)
-            return List.of(ray.getTargetPoint(t2));
-        return List.of((ray.getTargetPoint(t1)),ray.getTargetPoint(t2));
+            return List.of(new GeoPoint(this,ray.getTargetPoint(t2)));
+        return List.of(new GeoPoint(this,ray.getTargetPoint(t1)),new GeoPoint(this,ray.getTargetPoint(t2)));
     }
 }
 
