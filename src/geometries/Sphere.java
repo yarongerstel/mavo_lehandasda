@@ -12,20 +12,28 @@ public class Sphere extends Geometry{
     Point3D _center;
     double _radius;
 
-    public Sphere(Point3D center, double radius) {
-        this._center = center;
-        this._radius = radius;
-    }
-
+    /**
+     * constructor sphere
+     * @param center
+     * @param radius
+     */
     public Sphere(double radius, Point3D center) {
         this._center = center;
         this._radius = radius;
     }
 
+    /**
+     *
+     * @return the center of sphere
+     */
     public Point3D getCenter() {
         return _center;
     }
 
+    /**
+     *
+     * @return the radius of sphere
+     */
     public double getRadius() {
         return _radius;
     }
@@ -43,7 +51,7 @@ public class Sphere extends Geometry{
     /***
      *
      * @param ray
-     * @return List of point the ray Intersections
+     * @return List of GeoPoint the ray Intersections on this sphere
      */
 
     @Override

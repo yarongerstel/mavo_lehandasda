@@ -24,7 +24,7 @@ public class Triangle extends Polygon {
         super(p1,p2,p3);
     }
     /**
-     * find Intsersections
+     * find GeoIntsersections on this Triangle
      * @param ray
      * @return list of Intsersections
      */
@@ -54,9 +54,9 @@ public class Triangle extends Polygon {
 
 
     /**
-     * getter
+     * get the normal from this Triangle
      * @param point
-     * @return
+     * @return the normal
      */
     @Override
     public Vector getNormal(Point3D point) {

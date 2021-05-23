@@ -1,8 +1,15 @@
 package primitives;
 
 public class Material {
+    /**
+     * diffuse
+     */
     public double Kd =0;
+    /**
+     * specular
+     */
     public double Ks =0;
+
     public int nShininess=0;
 
     public Material setKd(double kd) {

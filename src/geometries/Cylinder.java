@@ -10,14 +10,27 @@ public class Cylinder extends Tube {
 
     double height;
 
+    /**
+     * constructor from tube..
+     * @param _axisRay
+     * @param radius
+     */
     public Cylinder(Ray _axisRay, double radius) {
         super(_axisRay, radius);
     }
 
+    /**
+     *
+     * @return height of cylinder
+     */
     public double getHeight() {
         return height;
     }
 
+    /**
+     *
+     * @return radius of cylinder
+     */
     @Override
     public double getRadius() {
         return super.getRadius();

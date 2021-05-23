@@ -5,19 +5,34 @@ import java.util.Objects;
 public class Vector {
     Point3D _head;
 
-
+    /**
+     * constructor by coordinate
+     * @param x
+     * @param y
+     * @param z
+     */
     public Vector(Coordinate x, Coordinate y, Coordinate z) {
         if (x.coord == 0 && y.coord == 0 && z.coord == 0)
             throw new IllegalArgumentException("Vector head cannot be Point(0,0,0)");
         this._head = new Point3D(x, y, z);
     }
 
+    /**
+     * constructor by double
+     * @param x
+     * @param y
+     * @param z
+     */
     public Vector(double x, double y, double z) {
         if (x == 0 && y == 0 && z == 0)
             throw new IllegalArgumentException("Vector head cannot be Point(0,0,0)");
         this._head = new Point3D(x, y, z);
     }
 
+    /**
+     * Adds the "head" point to our vector
+     * @param head
+     */
     public Vector(Point3D head) {
         _head = head;
     }
@@ -88,8 +103,8 @@ public class Vector {
         double v1 = v._head._x.coord;
         double v2 = v._head._y.coord;
         double v3 = v._head._z.coord;
-     //   if(u1/v1 == u2/v2 && u2/v2 == u3/v3 && u1/v1 == u3/v3)
-       //     throw new IllegalArgumentException("Error: parallel vectors");
+        if(u1/v1 == u2/v2 && u2/v2 == u3/v3 && u1/v1 == u3/v3)
+            throw new IllegalArgumentException("Error: parallel vectors");
 
         return new Vector(new Point3D(
                 u2 * v3 - u3 * v2,

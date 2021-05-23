@@ -13,7 +13,7 @@ class GeometriesTest {
     void findIntsersections() {
         Ray ray = new Ray(new Vector(1,0,0.25), new Point3D(2,0,0));
         Triangle triangle = new Triangle(new Point3D(6,-2,0), new Point3D(6,2,0),new Point3D(6,0,3));
-        Sphere sphere = new Sphere(new Point3D(3.5,0.5,0),1);
+        Sphere sphere = new Sphere(1,new Point3D(3.5,0.5,0));
         Plane plane = new Plane(new Point3D(7,-2,0),new Point3D(7,2,0),new Point3D(7,0,3));
 
         // =============== Boundary Values Tests ==================

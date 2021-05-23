@@ -44,7 +44,7 @@ public class Tube extends Geometry{
     /***
      *
      * @param ray
-     * @return List of point the ray Intersections
+     * @return List of geoPoint the ray Intersections
      */
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray) {

@@ -9,6 +9,9 @@ public class Camera {
     final private Vector _vUP;
     final private Vector _vTO;
     final private Vector _vRIGHT;
+    /**
+     * param of plan
+     */
     private double _width;
     private double _height;
     private double _distance;
@@ -53,8 +56,6 @@ public class Camera {
     public double getHeight() {
         return _height;
     }
-
-    //chaining methods
 
     /**
      *

@@ -15,7 +15,7 @@ class SphereTest {
     void getNormal() {
         //test if get normal function return right normal
         Point3D p=new Point3D(1,1,1);
-        Sphere S=new Sphere(p,3);
+        Sphere S=new Sphere(3,p);
         double sqrt3 = Math.sqrt(1d / 3);
         //Vector v=new Vector(sqrt3,sqrt3,sqrt3);
         assertEquals(new Vector(sqrt3, sqrt3, sqrt3), S.getNormal(new Point3D(2, 2, 2)), "Bad normal to trin");
@@ -23,7 +23,7 @@ class SphereTest {
 
     @Test
     void findIntersections() {
-        Sphere sphere = new Sphere( new Point3D(1, 0, 0),1d);
+        Sphere sphere = new Sphere(1d,new Point3D(1, 0, 0));
         Vector vector= new Vector(3, 1, 0);
         // ============ Equivalence Partitions Tests ==============
 

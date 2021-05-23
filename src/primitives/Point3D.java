@@ -8,16 +8,22 @@ public class Point3D {
     final public static Point3D ZERO = new Point3D(0d, 0d, 0d);
 
     /**
-     * consructor for Point3D
+     * constructor for Point3D by coordinate
      *
      * @param x coordinate for X axis
-     * @param y
-     * @param z
+     * @param y coordinate for y axis
+     * @param z coordinate for z axis
      */
     public Point3D(Coordinate x, Coordinate y, Coordinate z) {
         this(x.coord, y.coord, z.coord);
     }
 
+    /**
+     * constructor for Point3D by double
+     * @param x coordinate for X axis
+     * @param y coordinate for y axis
+     * @param z coordinate for z axis
+     */
     public Point3D(double x, double y, double z) {
         _x = new Coordinate(x);
         _y = new Coordinate(y);
@@ -99,7 +105,7 @@ public class Point3D {
                 _z.coord + vector._head._z.coord
         );
     }
-
+   //**********************geters*****************
 
     public double getX() {
         return _x.coord;

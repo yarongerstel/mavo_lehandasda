@@ -10,12 +10,18 @@ import java.util.List;
 public class Geometries implements Intersectable{
 
     List<Intersectable> intersectables = new ArrayList<>();
+
     public Geometries(List<Intersectable> intersectables) {
         this.intersectables = intersectables;
     }
     public Geometries(Intersectable... _geometries){
         add(_geometries);
     }
+
+    /**
+     * add to  List<intersectable> more geometries
+     * @param _geometries
+     */
     public void add(Intersectable... _geometries){
         this.intersectables.addAll(Arrays.asList(_geometries));
     }

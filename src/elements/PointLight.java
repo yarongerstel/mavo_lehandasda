@@ -10,6 +10,11 @@ public class PointLight extends Light implements LightSource{
     private double _Kl =0;
     private double _Kq =0;
 
+    /**
+     * constructor
+     * @param intensity
+     * @param position
+     */
     protected PointLight(Color intensity, Point3D position) {
         super(intensity);
         _position = position;

@@ -43,6 +43,11 @@ public class Ray {
         return pmin;
     }
 
+    /**
+     * Returns from all the cuts of the foundation with the shape the closest cut - the only one actually seen
+     * @param lis
+     * @return The closest GeoPoint
+     */
     public GeoPoint findClosestGeoPoint(List<GeoPoint> lis) {
         if (lis == null) {
             return null;
@@ -58,10 +63,16 @@ public class Ray {
         return pmin;
     }
 
-
+    /**
+     * Returns the point where the beam is supposed to hit according to the given length
+     * @param length
+     * @return The point where the foundation is supposed to hit
+     */
     public Point3D getTargetPoint(double length) {
         return isZero(length) ? _p0 : _p0.add(_dir.scale(length));
     }
+
+//*************geters**************
 
     public Vector getDirection() {
         return _dir;

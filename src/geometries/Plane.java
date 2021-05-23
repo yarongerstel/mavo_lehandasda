@@ -16,13 +16,25 @@ public class Plane extends Geometry {
         _normal = normal;
     }
 
+    /**
+     * constructor get 3 point and calc the _p0 and _normal to this plane
+     * @param vertex
+     * @param vertex1
+     * @param vertex2
+     */
     public Plane(Point3D vertex, Point3D vertex1, Point3D vertex2) {
         _p0 = vertex;
         Vector v1=vertex1.subtract(vertex);
         Vector v2=vertex2.subtract(vertex);
         Vector cross=v1.crossProduct(v2);
+        //if the v1 and v2 are parallel trow exception
         _normal = cross.normalize();
     }
+
+    /**
+     *
+     * @return point on this plane
+     */
     public Point3D getPointInPlane() {
         return _p0;
     }
@@ -37,7 +49,7 @@ public class Plane extends Geometry {
     /***
      *
      * @param ray
-     * @return List of point the ray Intersections
+     * @return List of GeoPoint the ray Intersections
      */
 
     @Override

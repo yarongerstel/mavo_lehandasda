@@ -6,14 +6,27 @@ import primitives.Vector;
 
 public class SpotLight extends PointLight{
     private final Vector _direction;
+
+    /**
+     * constructor
+     * @param intensity
+     * @param position
+     * @param direction
+     */
     protected SpotLight(Color intensity, Point3D position, Vector direction) {
         super(intensity, position);
         _direction = direction.normalized();
     }
 
+    /**
+     *
+     * @param p
+     * @return Il of spot light intensity
+     */
     @Override
     public Color getIntensity(Point3D p) {
         double cosTetha = _direction.dotProduct(getL(p));
+        //Color intensity calc from point light(super)
         Color intensity=super.getIntensity(p);
         return intensity.scale(Math.max(0,cosTetha));
     }

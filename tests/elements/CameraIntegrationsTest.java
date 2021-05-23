@@ -29,19 +29,19 @@ public class CameraIntegrationsTest {
         assertEquals(numOfIntersections(sphere,cam), 2, "wrong number of intersections");
 
         //TC02: the camera is outside the sphere and all of the ray crossing the sphere
-        sphere = new Sphere(new Point3D(0, 0, -5), 4.9);
+        sphere = new Sphere(4.9,new Point3D(0, 0, -5));
         assertEquals(numOfIntersections(sphere,cam), 18, "wrong number of intersections");
 
         //TC03: all the ray beside the corners crossing the sphere
-        sphere=new Sphere(new Point3D(0,0,-2),1.5);
+        sphere=new Sphere(1.5,new Point3D(0,0,-2));
         assertEquals(numOfIntersections(sphere,cam), 10, "wrong number of intersections");
 
         //TC04: the camera is inside the sphere(all rays intersect once with the sphere
-        sphere=new Sphere(new Point3D(0,0,-1),4);
+        sphere=new Sphere(4,new Point3D(0,0,-1));
         assertEquals(numOfIntersections(sphere,cam), 9, "wrong number of intersections");
 
         //TC05: no intersection of the camera rays with the sphere
-        sphere=new Sphere(new Point3D(0,0,1),0.5);
+        sphere=new Sphere(0.5,new Point3D(0,0,1));
         assertEquals(numOfIntersections(sphere,cam), 0, "wrong number of intersections");
 
     }

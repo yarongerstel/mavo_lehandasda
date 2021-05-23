@@ -9,6 +9,11 @@ public abstract class Light {
         _intensity = intensity;
     }
 
+    /**
+     * get intensity: get the power of the light to a point
+     *
+     * @return The intensity of the light at the point p
+     */
     public Color getIntensity() {
         return _intensity;
     }

@@ -12,6 +12,11 @@ public interface Intersectable {
         public Geometry geometry;
         public Point3D point;
 
+        /**
+         * constructor Point on the geometric shape
+         * @param geometry
+         * @param point
+         */
         public GeoPoint(Geometry geometry, Point3D point) {
             this.geometry = geometry;
             this.point = point;
@@ -26,7 +31,7 @@ public interface Intersectable {
         }
     }
     /**
-     * the list of all the shapes
+     * the list of all the Intersectable of the shape
      **/
     List<Intersectable> intersectables = new LinkedList<>();
 
@@ -44,6 +49,11 @@ public interface Intersectable {
                 .collect(Collectors.toList());
     }
 
+    /**
+     *
+     * @param ray
+     * @returnList all the GeoPoint on the geometric shape that the beam cuts
+     */
     List<GeoPoint> findGeoIntersections(Ray ray);
 
 
