@@ -12,21 +12,39 @@ public class Render {
     private Camera _camera = null;
     private RayTracerBase _rayTracerBase = null;
 
+    /**
+     *
+     * @param imageWriter
+     * @return this render with the ImageWriter we get
+     */
     public Render setImageWriter(ImageWriter imageWriter) {
         _imageWriter = imageWriter;
         return this;
     }
 
+    /**
+     *
+     * @param camera
+     * @return this render with the camera we get
+     */
     public Render setCamera(Camera camera) {
         _camera = camera;
         return this;
     }
 
+    /**
+     *
+     * @param rayTracer
+     * @return this render with the RayTracerBase we get
+     */
     public Render setRayTracer(RayTracerBase rayTracer) {
         _rayTracerBase = rayTracer;
         return this;
     }
 
+    /**
+     * right the pixel one by one
+     */
     public void renderImage() {
         try {
             if (_imageWriter == null) {
@@ -54,6 +72,11 @@ public class Render {
         }
     }
 
+    /**
+     * make grid to the picture
+     * @param interval
+     * @param color
+     */
     public void printGrid(int interval, Color color) {
         if (_imageWriter == null) {
             throw new MissingFormatArgumentException("_imageWriter null!!");
@@ -68,6 +91,9 @@ public class Render {
         }
     }
 
+    /**
+     * check if _imageWriter null else make the image
+     */
     public void writeToImage() {
         if (_imageWriter == null) {
             throw new MissingFormatArgumentException("_imageWriter null!!");

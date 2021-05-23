@@ -26,16 +26,31 @@ public class Scene {
         geometries = new Geometries();
     }
 
+    /**
+     *
+     * @param background
+     * @return this scene with background we get
+     */
     public Scene setBackground(Color background) {
         this.background = background;
         return this;
     }
 
+    /**
+     *
+     * @param ambientlight
+     * @return this scene with ambientlight we get
+     */
     public Scene setAmbientLight(AmbientLight ambientlight) {
         this.ambientlight = ambientlight;
         return this;
     }
 
+    /**
+     *
+     * @param geometries
+     * @return this scene with all the Geometries we get
+     */
     public Scene setGeometries(Geometries geometries) {
         this.geometries = geometries;
         return this;

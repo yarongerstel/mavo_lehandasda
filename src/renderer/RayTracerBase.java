@@ -7,9 +7,14 @@ import scene.Scene;
 public abstract class RayTracerBase {
     protected Scene _scene;
 
+    /**
+     * constructor
+     * @param _scene
+     */
     public RayTracerBase(Scene _scene) {
         this._scene = _scene;
     }
+
     public abstract Color traceRay (Ray ray) ;
 
 }
