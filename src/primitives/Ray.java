@@ -9,6 +9,7 @@ import static primitives.Util.isZero;
 public class Ray {
     Point3D _p0;
     Vector _dir;
+    private static final double DELTA = 0.1;
 
     public Ray(Vector dir, Point3D p0) {
         _p0 = p0;
@@ -23,6 +24,11 @@ public class Ray {
     public Ray(Ray other) {
         this._dir = other._dir;
         this._p0 = other._p0;
+    }
+
+    public Ray(Vector l,Vector n,Point3D point){
+        this._p0=point.add(n.scale(n.dotProduct(l) > 0 ? DELTA : -DELTA));
+        this._dir=l;
     }
 
     /**

@@ -11,6 +11,34 @@ public class Material {
     public double Ks =0;
 
     public int nShininess=0;
+    /**
+     * transparency
+     */
+    public double Kt=0d;
+    /**
+     * reflection
+     */
+    public double Kr=0d;
+
+    /**
+     *
+     * @param kt
+     * @return this material with transparency we get
+     */
+    public Material setKt(double kt) {
+        Kt = kt;
+        return this;
+    }
+
+    /**
+     *
+     * @param kr
+     * @return this material with reflection we get
+     */
+    public Material setKr(double kr) {
+        Kr = kr;
+        return this;
+    }
 
     public Material setKd(double kd) {
         this.Kd = kd;
