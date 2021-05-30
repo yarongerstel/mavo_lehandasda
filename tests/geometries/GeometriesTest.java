@@ -11,7 +11,7 @@ class GeometriesTest {
 
     @org.junit.jupiter.api.Test
     void findIntsersections() {
-        Ray ray = new Ray(new Vector(1,0,0.25), new Point3D(2,0,0));
+        Ray ray = new Ray(new Point3D(2,0,0), new Vector(1,0,0.25));
         Triangle triangle = new Triangle(new Point3D(6,-2,0), new Point3D(6,2,0),new Point3D(6,0,3));
         Sphere sphere = new Sphere(1,new Point3D(3.5,0.5,0));
         Plane plane = new Plane(new Point3D(7,-2,0),new Point3D(7,2,0),new Point3D(7,0,3));
@@ -26,16 +26,16 @@ class GeometriesTest {
         assertEquals(4,geometries.findIntersections(ray).size(),"2 intersetions(2 in sphere)");
 
         // TC:03 list size = 1
-        ray = new Ray(new Vector(1,0,0.25), new Point3D(6.5,0,0.25));
+        ray = new Ray(new Point3D(6.5,0,0.25), new Vector(1,0,0.25));
         assertEquals(geometries.findIntersections(ray).size(),1,"1 intersection(only plane)");
 
         // TC:04 list size = 0
-        ray = new Ray(new Vector(-1,0,0.25), new Point3D(2,0,0));
+        ray = new Ray(new Point3D(2,0,0), new Vector(-1,0,0.25));
         assertNull(geometries.findIntersections(ray),"not null");
 
         // ============ Equivalence Partitions Tests ==============
         // TC:05 list size = 2
-        ray = new Ray(new Vector(1,0,0.25), new Point3D(5,0,0));
+        ray = new Ray(new Point3D(5,0,0), new Vector(1,0,0.25));
         assertEquals(geometries.findIntersections(ray).size(),2,"2 intersetions");
 
     }

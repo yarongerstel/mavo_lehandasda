@@ -1,10 +1,14 @@
 package primitives;
 
+/**
+ * todo
+ */
 public class Material {
     /**
      * diffuse
      */
     public double Kd =0;
+
     /**
      * specular
      */
@@ -15,6 +19,7 @@ public class Material {
      * transparency
      */
     public double Kt=0d;
+    //kt+kr<=1
     /**
      * reflection
      */

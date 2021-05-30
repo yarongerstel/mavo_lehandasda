@@ -12,7 +12,7 @@ class RayTest {
 
     @Test
     void findClosestPoint() {
-        Ray ray = new Ray(new Vector(0, 0, 1),Point3D.ZERO );
+        Ray ray = new Ray(Point3D.ZERO, new Vector(0, 0, 1));
         // \closest point is in the middle of the list
         List<Point3D> list = new LinkedList<>() {{
             add(new Point3D(-100, 90, 100));

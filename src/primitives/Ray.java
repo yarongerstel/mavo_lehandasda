@@ -1,19 +1,18 @@
 package primitives;
 
 import java.util.List;
-import java.util.Objects;
 
 import static geometries.Intersectable.GeoPoint;
 import static primitives.Util.isZero;
 
 public class Ray {
-    Point3D _p0;
-    Vector _dir;
+    private final Point3D _p0;
+    private final Vector _dir;
     private static final double DELTA = 0.1;
 
-    public Ray(Vector dir, Point3D p0) {
+    public Ray(Point3D p0, Vector dir) {
         _p0 = p0;
-        _dir = dir.normalize();
+        _dir = dir.normalized();
     }
 
     /**
@@ -22,11 +21,18 @@ public class Ray {
      * @param other
      */
     public Ray(Ray other) {
-        this._dir = other._dir;
-        this._p0 = other._p0;
+        _p0 = other._p0;
+        _dir = other._dir;
+
     }
 
-    public Ray(Vector l,Vector n,Point3D point){
+    /**
+     * construct new ray offset by DELTA*normal(n)
+     * @param point
+     * @param l
+     * @param n
+     */
+    public Ray(Point3D point, Vector l, Vector n){
         this._p0=point.add(n.scale(n.dotProduct(l) > 0 ? DELTA : -DELTA));
         this._dir=l;
     }
@@ -86,11 +92,6 @@ public class Ray {
 
     public Point3D getPoint() {
         return _p0;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(_p0, _dir);
     }
 
     @Override
