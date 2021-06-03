@@ -1,5 +1,8 @@
 package primitives;
 
+/**
+ * Class for a point3D in space by three coordinates
+ */
 public class Point3D {
     final Coordinate _x;
     final Coordinate _y;
@@ -15,7 +18,7 @@ public class Point3D {
      * @param z coordinate for z axis
      */
     public Point3D(Coordinate x, Coordinate y, Coordinate z) {
-        this(x.coord, y.coord, z.coord);
+        this(x._coord, y._coord, z._coord);
     }
 
     /**
@@ -55,21 +58,23 @@ public class Point3D {
     }
 
     /**
-     * @param other
+     * Calculates the square distance between two points
+     * @param other point
      * @return (x2 - x1)^2 + (y2-y1)^2 + (z2-z1)^2
      */
     public double distanceSquared(Point3D other) {
-        final double x1 = _x.coord;
-        final double y1 = _y.coord;
-        final double z1 = _z.coord;
-        final double x2 = other._x.coord;
-        final double y2 = other._y.coord;
-        final double z2 = other._z.coord;
+        final double x1 = _x._coord;
+        final double y1 = _y._coord;
+        final double z1 = _z._coord;
+        final double x2 = other._x._coord;
+        final double y2 = other._y._coord;
+        final double z2 = other._z._coord;
 
         return ((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)) + ((z2 - z1) * (z2 - z1));
     }
 
     /**
+     * Calculates the distance between two points
      * @param point3D
      * @return euclidean distance between 2  3D points
      */
@@ -78,18 +83,18 @@ public class Point3D {
     }
 
     /**
-     *
-     * @param pt2
+     *Creating a vector by subtracting between two points
+     * @param ather point
      * @return Vector The result of subtracting a vector by a point.
      */
-    public Vector subtract(Point3D pt2) {
-        if (pt2.equals(this)) {
+    public Vector subtract(Point3D ather) {
+        if (ather.equals(this)) {
             throw new IllegalArgumentException("cannot create Vector to Point(0,0,0)");
         }
         return new Vector(new Point3D(
-                _x.coord - pt2._x.coord,
-                _y.coord - pt2._y.coord,
-                _z.coord - pt2._z.coord
+                _x._coord - ather._x._coord,
+                _y._coord - ather._y._coord,
+                _z._coord - ather._z._coord
         ));
     }
 
@@ -100,23 +105,23 @@ public class Point3D {
      */
     public Point3D add(Vector vector) {
         return new Point3D(
-                _x.coord + vector._head._x.coord,
-                _y.coord + vector._head._y.coord,
-                _z.coord + vector._head._z.coord
+                _x._coord + vector._head._x._coord,
+                _y._coord + vector._head._y._coord,
+                _z._coord + vector._head._z._coord
         );
     }
    //**********************geters*****************
 
     public double getX() {
-        return _x.coord;
+        return _x._coord;
     }
 
     public double getY() {
-        return _y.coord;
+        return _y._coord;
     }
 
     public double getZ() {
-        return _z.coord;
+        return _z._coord;
     }
 
 

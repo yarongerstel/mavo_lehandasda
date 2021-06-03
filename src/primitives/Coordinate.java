@@ -14,16 +14,15 @@ public final class Coordinate {
      * Coordinate value, intentionally "package-friendly" due to performance
      * constraints
      */
-    final double coord;
+    final double _coord;
 
     /**
      * Coordinate constructor receiving a coordinate value
-     *
+     * if it too close to zero make it zero
      * @param coord coordinate value
      */
     public Coordinate(double coord) {
-        // if it too close to zero make it zero
-        this.coord = alignZero(coord);
+        _coord = alignZero(coord);
     }
 
     /*************** Admin *****************/
@@ -33,11 +32,11 @@ public final class Coordinate {
         if (obj == null) return false;
         if (!(obj instanceof Coordinate)) return false;
         Coordinate other = (Coordinate)obj;
-        return isZero(coord - other.coord);
+        return isZero(_coord - other._coord);
     }
 
     @Override
     public String toString() {
-        return "" + coord;
+        return "" + _coord;
     }
 }

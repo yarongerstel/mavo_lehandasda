@@ -5,11 +5,19 @@ import java.util.List;
 import static geometries.Intersectable.GeoPoint;
 import static primitives.Util.isZero;
 
+/**
+ * A class representing a ray by a point3D and direction vector
+ */
 public class Ray {
     private final Point3D _p0;
     private final Vector _dir;
-    private static final double DELTA = 0.1;
+    private static final double DELTA = 0.1;    // Its purpose is to move the beginning of the ray
 
+    /**
+     * constructor by point and direction
+     * @param p0 point3D
+     * @param dir direction vector
+     */
     public Ray(Point3D p0, Vector dir) {
         _p0 = p0;
         _dir = dir.normalized();
@@ -17,7 +25,6 @@ public class Ray {
 
     /**
      * copy constructor
-     *
      * @param other
      */
     public Ray(Ray other) {
@@ -28,17 +35,18 @@ public class Ray {
 
     /**
      * construct new ray offset by DELTA*normal(n)
-     * @param point
-     * @param l
-     * @param n
+     * @param point the point3D
+     * @param l direction vector
+     * @param n normal vector
      */
     public Ray(Point3D point, Vector l, Vector n){
-        this._p0=point.add(n.scale(n.dotProduct(l) > 0 ? DELTA : -DELTA));
-        this._dir=l;
+        _p0 = point.add(n.scale(n.dotProduct(l) > 0 ? DELTA : -DELTA));
+        _dir = l;
     }
 
     /**
-     * @param lis list of points
+     * find the closest point to the beginning of our ray
+     * @param lis the list of points (list of point the ray intersection)
      * @return the closest point to the beginning of the ray
      */
     public Point3D findClosestPoint(List<Point3D> lis) {

@@ -2,6 +2,9 @@ package primitives;
 
 import java.util.Objects;
 
+/**
+ * class for Vector Representation by point3D (Head)
+ */
 public class Vector {
     Point3D _head;
 
@@ -12,9 +15,9 @@ public class Vector {
      * @param z
      */
     public Vector(Coordinate x, Coordinate y, Coordinate z) {
-        if (x.coord == 0 && y.coord == 0 && z.coord == 0)
+        if (x._coord == 0 && y._coord == 0 && z._coord == 0)
             throw new IllegalArgumentException("Vector head cannot be Point(0,0,0)");
-        this._head = new Point3D(x, y, z);
+        _head = new Point3D(x, y, z);
     }
 
     /**
@@ -26,11 +29,11 @@ public class Vector {
     public Vector(double x, double y, double z) {
         if (x == 0 && y == 0 && z == 0)
             throw new IllegalArgumentException("Vector head cannot be Point(0,0,0)");
-        this._head = new Point3D(x, y, z);
+        _head = new Point3D(x, y, z);
     }
 
     /**
-     * Adds the "head" point to our vector
+     * copy constructor
      * @param head
      */
     public Vector(Point3D head) {
@@ -42,67 +45,67 @@ public class Vector {
     }
 
     /**
-     *
-     * @param v
+     * Connects two vectors
+     * @param v the second vector
      * @return connection of vectors by a new vector
      */
     public Vector add(Vector v){
-        return new Vector(this._head._x.coord+v._head._x.coord,
-                this._head._y.coord+v._head._y.coord,
-                this._head._z.coord+v._head._z.coord);
+        return new Vector(this._head._x._coord +v._head._x._coord,
+                this._head._y._coord +v._head._y._coord,
+                this._head._z._coord +v._head._z._coord);
     }
 
     /**
-     *
-     * @param v
+     * subtraction of vectors by a new vector: this - new
+     * @param v the second vector
      * @return subtraction of vectors by a new vector
      */
     public Vector subtract(Vector v){
-        return new Vector(this._head._x.coord-v._head._x.coord,
-                this._head._y.coord-v._head._y.coord,
-                this._head._z.coord-v._head._z.coord);
+        return new Vector(_head._x._coord -v._head._x._coord,
+                _head._y._coord -v._head._y._coord,
+                _head._z._coord -v._head._z._coord);
     }
 
     /**
-     *
-     * @param s
+     * vector multiplied by scalar
+     * @param s double scale
      * @return vector multiplied by scalar
      */
     public Vector scale(double s){
-        return new Vector(this._head._x.coord*s,
-                this._head._y.coord*s,
-                this._head._z.coord*s);
+        return new Vector(this._head._x._coord *s,
+                this._head._y._coord *s,
+                this._head._z._coord *s);
     }
 
     /**
-     *
+     * double of dotProduct
      * @param v
-     * @return return double of dotProduct
+     * @return double of dotProduct u1 * v1 + u2 * v2 + u3 * v3
      */
     public double dotProduct(Vector v) {
-        double u1 = _head._x.coord;
-        double u2 = _head._y.coord;
-        double u3 = _head._z.coord;
-        double v1 = v._head._x.coord;
-        double v2 = v._head._y.coord;
-        double v3 = v._head._z.coord;
+        double u1 = _head._x._coord;
+        double u2 = _head._y._coord;
+        double u3 = _head._z._coord;
+        double v1 = v._head._x._coord;
+        double v2 = v._head._y._coord;
+        double v3 = v._head._z._coord;
 
         return (u1 * v1 + u2 * v2 + u3 * v3);
 
     }
 
     /**
-     *
-     * @param v
+     * Returns a vertical vector to our vector and also to the additional vector
+     * @param v the other vector
      * @return vector of crossProduct
      */
     public Vector crossProduct(Vector v) {
-        double u1 = _head._x.coord;
-        double u2 = _head._y.coord;
-        double u3 = _head._z.coord;
-        double v1 = v._head._x.coord;
-        double v2 = v._head._y.coord;
-        double v3 = v._head._z.coord;
+        double u1 = _head._x._coord;
+        double u2 = _head._y._coord;
+        double u3 = _head._z._coord;
+        double v1 = v._head._x._coord;
+        double v2 = v._head._y._coord;
+        double v3 = v._head._z._coord;
         if(u1/v1 == u2/v2 && u2/v2 == u3/v3 && u1/v1 == u3/v3)
             throw new IllegalArgumentException("Error: parallel vectors");
 
@@ -114,17 +117,17 @@ public class Vector {
     }
 
     /**
-     *
+     * Vector length squared
      * @return double of lengthSquared  of this Vector
      */
     public double lengthSquared(){
-         return this._head._x.coord*this._head._x.coord+
-                  this._head._y.coord*this._head._y.coord+
-                   this._head._z.coord*this._head._z.coord;
+         return this._head._x._coord *this._head._x._coord +
+                  this._head._y._coord *this._head._y._coord +
+                   this._head._z._coord *this._head._z._coord;
     }
 
     /**
-     *
+     * Vector length
      * @return double length of this Vector
      */
     public double length(){
@@ -132,20 +135,18 @@ public class Vector {
     }
 
     /**
-     *
-     * @return Normalizes the vector
+     * @return Normalizes this vector
      */
     public Vector normalize(){
         double length=this.length();
-        this._head=new Point3D(this._head._x.coord/length,
-                this._head._y.coord/length,
-                this._head._z.coord/length);
+        this._head=new Point3D(this._head._x._coord /length,
+                this._head._y._coord /length,
+                this._head._z._coord /length);
         return this;
     }
 
     /**
-     *
-     * @return Returns a new normalized vector
+     * @return a new normalized vector
      */
     public Vector normalized(){
 
