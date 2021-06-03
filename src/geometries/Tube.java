@@ -6,6 +6,9 @@ import primitives.Vector;
 
 import java.util.List;
 
+/**
+ * class of Tube Representation by ray and radius
+ */
 public class Tube extends Geometry{
 
     Ray _axisRay;
@@ -19,8 +22,14 @@ public class Tube extends Geometry{
         return _radius;
     }
 
+    /**
+     * constructor of tube
+     * @param axisRay The ray that represents the axis
+     * @param radius the radius of the tube
+     */
     public Tube(Ray axisRay, double radius) {
-        if(radius<=0) throw new IllegalArgumentException("can't tube withe negative radius");
+        if(radius<=0)
+            throw new IllegalArgumentException("can't tube withe negative radius");
         _axisRay = axisRay;
         _radius = radius;
     }
@@ -30,6 +39,11 @@ public class Tube extends Geometry{
         return _axisRay.toString() + '\t' + "Radius: " + _radius;
     }
 
+    /**
+     * calc the normal to point on the tube
+     * @param point the point on the tube
+     * @return normal vector from the given point
+     */
     @Override
     public Vector getNormal(Point3D point) {
         Vector v = _axisRay.getDirection();
