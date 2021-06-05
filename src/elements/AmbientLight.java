@@ -3,7 +3,7 @@ package elements;
 import primitives.Color;
 
 /**
- * Department of Environmental Lighting
+ * class of Environmental Lighting
  */
 public class AmbientLight extends Light {
     /**

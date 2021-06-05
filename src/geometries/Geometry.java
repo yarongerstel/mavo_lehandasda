@@ -12,8 +12,8 @@ public abstract class Geometry implements Intersectable {
     /**
      * The color that returns from the object after the light hits it
      */
-    protected Color _emission= Color.BLACK;
-    private Material _material=new Material();
+    protected Color _emission = Color.BLACK;
+    private Material _material = new Material();
 
     public Material getMaterial() {
         return _material;
@@ -21,6 +21,7 @@ public abstract class Geometry implements Intersectable {
 
     /**
      * Adding material to the current geometry
+     *
      * @param material
      * @return this geometry with material
      */
@@ -30,7 +31,6 @@ public abstract class Geometry implements Intersectable {
     }
 
     /**
-     *
      * @return _emission color
      */
     public Color getEmission() {
@@ -39,6 +39,7 @@ public abstract class Geometry implements Intersectable {
 
     /**
      * Add color emission the current shape
+     *
      * @param emission
      * @return this shpe with emision color
      */
@@ -49,6 +50,7 @@ public abstract class Geometry implements Intersectable {
 
     /**
      * interfasce of get normal
+     *
      * @param point
      * @return A vector perpendicular to the shape
      */

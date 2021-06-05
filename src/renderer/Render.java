@@ -7,6 +7,9 @@ import primitives.Ray;
 import java.util.MissingFormatArgumentException;
 import java.util.MissingResourceException;
 
+/**
+ * class for Image Production
+ */
 public class Render {
     private ImageWriter _imageWriter = null;
     private Camera _camera = null;

@@ -6,29 +6,34 @@ import primitives.Vector;
 
 import java.util.List;
 
+/**
+ * class for Final Cylinder Representation
+ */
 public class Cylinder extends Tube {
-
-    double height;
+    /**
+     * Cylinder height
+     */
+    double _height;
 
     /**
-     * constructor from tube..
-     * @param _axisRay
-     * @param radius
+     * constructor from cylinder
+     * @param axisRay The ray that represents the axis
+     * @param radius the radius of the cylinder
+     * @param height the height of the cylinder
      */
-    public Cylinder(Ray _axisRay, double radius) {
-        super(_axisRay, radius);
+    public Cylinder(Ray axisRay, double radius, double height) {
+        super(axisRay, radius);
+        _height = height;
     }
 
     /**
-     *
      * @return height of cylinder
      */
     public double getHeight() {
-        return height;
+        return _height;
     }
 
     /**
-     *
      * @return radius of cylinder
      */
     @Override
@@ -53,7 +58,7 @@ public class Cylinder extends Tube {
 
     @Override
     public String toString() {
-        return super.toString() + '\t' + "Height: " + height;
+        return super.toString() + '\t' + "Height: " + _height;
     }
 
 }

@@ -7,6 +7,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * todo
+ */
 public interface Intersectable {
     public static class GeoPoint {
         public Geometry geometry;
