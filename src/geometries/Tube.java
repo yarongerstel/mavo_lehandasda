@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * class of Tube Representation by ray and radius
  */
-public class Tube extends Geometry{
+public class Tube extends Geometry {
 
     Ray _axisRay;
     double _radius;
@@ -24,11 +24,12 @@ public class Tube extends Geometry{
 
     /**
      * constructor of tube
+     *
      * @param axisRay The ray that represents the axis
-     * @param radius the radius of the tube
+     * @param radius  the radius of the tube
      */
     public Tube(Ray axisRay, double radius) {
-        if(radius<=0)
+        if (radius <= 0)
             throw new IllegalArgumentException("can't tube withe negative radius");
         _axisRay = axisRay;
         _radius = radius;
@@ -41,6 +42,7 @@ public class Tube extends Geometry{
 
     /**
      * calc the normal to point on the tube
+     *
      * @param point the point on the tube
      * @return normal vector from the given point
      */
@@ -62,7 +64,6 @@ public class Tube extends Geometry{
      */
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray) {
-        //todo
         return null;
     }
 }

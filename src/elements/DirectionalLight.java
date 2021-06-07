@@ -4,14 +4,20 @@ import primitives.Color;
 import primitives.Point3D;
 import primitives.Vector;
 
+/**
+ * Class of light from infinite distance (like the sun)
+ */
 public class DirectionalLight extends Light implements LightSource {
 
+    /**
+     * the direction of the light
+     */
     private final Vector _direction;
 
     /**
      * Light from a distant source that does not weaken with distance
      * @param intensity (0-255 the color of light)
-     * @param direction
+     * @param direction vector of the direction of the light
      */
     public DirectionalLight(Color intensity, Vector direction) {
         super(intensity);
@@ -31,7 +37,7 @@ public class DirectionalLight extends Light implements LightSource {
     /**
      * get L: get the direction of the light
      * @param p
-     * @return  get the direction of the light
+     * @return the direction of the light
      */
     @Override
     public Vector getL(Point3D p) {
@@ -40,7 +46,7 @@ public class DirectionalLight extends Light implements LightSource {
 
     /**
      * @param point
-     * @return distance
+     * @return Infinite distance
      */
     @Override
     public double getDistance(Point3D point) {

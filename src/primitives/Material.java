@@ -1,32 +1,32 @@
 package primitives;
 
 /**
- * todo
+ * Material properties
  */
 public class Material {
     /**
-     * diffuse
+     * Light diffuse in the material
+     * ambient + diffuse + specular = pong model
      */
-    public double Kd =0;
+    public double Kd = 0;
 
     /**
-     * specular
+     * specular - The light reflected from the material
      */
-    public double Ks =0;
+    public double Ks = 0;
 
-    public int nShininess=0;
+    public int nShininess = 0;
     /**
      * transparency
      */
-    public double Kt=0d;
+    public double Kt = 0d;
     //kt+kr<=1
     /**
      * reflection
      */
-    public double Kr=0d;
+    public double Kr = 0d;
 
     /**
-     *
      * @param kt
      * @return this material with transparency we get
      */
@@ -36,7 +36,6 @@ public class Material {
     }
 
     /**
-     *
      * @param kr
      * @return this material with reflection we get
      */
@@ -45,16 +44,28 @@ public class Material {
         return this;
     }
 
+    /**
+     * @param kd
+     * @return this material with diffuse we get
+     */
     public Material setKd(double kd) {
         this.Kd = kd;
         return this;
     }
 
+    /**
+     * @param ks
+     * @return this material with specular we get
+     */
     public Material setKs(double ks) {
         this.Ks = ks;
         return this;
     }
 
+    /**
+     * @param nShininess
+     * @return this material with Shininess we get
+     */
     public Material setShininess(int nShininess) {
         this.nShininess = nShininess;
         return this;

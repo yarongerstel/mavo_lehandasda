@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * todo
+ * Interface for a Intersectable shape
  */
 public interface Intersectable {
     public static class GeoPoint {

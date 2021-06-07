@@ -10,9 +10,12 @@ import primitives.Vector;
  */
 public abstract class Geometry implements Intersectable {
     /**
-     * The color that returns from the object after the light hits it
+     * The color of this geometry
      */
     protected Color _emission = Color.BLACK;
+    /**
+     * the material properties
+     */
     private Material _material = new Material();
 
     public Material getMaterial() {
@@ -50,7 +53,6 @@ public abstract class Geometry implements Intersectable {
 
     /**
      * interfasce of get normal
-     *
      * @param point
      * @return A vector perpendicular to the shape
      */

@@ -15,6 +15,11 @@ public abstract class RayTracerBase {
         this._scene = _scene;
     }
 
+    /**
+     * A function that calculates the pixel color that the beam crosses
+     * @param ray the ray from the camera through the pixel to the body
+     * @return the color of  the pixel
+     */
     public abstract Color traceRay (Ray ray) ;
 
 }
