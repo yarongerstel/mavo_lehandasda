@@ -167,9 +167,9 @@ public class ShadowTests {
                         .setKl(1E-5).setKq(1.5E-7));
 
         Render render = new Render(). //
-                setImageWriter(new ImageWriter("SphereTriangleSpot2", 400, 400)) //
+                setImageWriter(new ImageWriter("SphereTriangleSpot2.1", 400, 400)) //
                 .setCamera(camera) //
-                .setRayTracer(new BasicRayTracer(scene));
+                .setRayTracer(new BasicRayTracer(scene).setRadiusOfLightSource(5).setAmountOfRaysForSoftShadow(300));
         render.renderImage();
         render.writeToImage();
     }

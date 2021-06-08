@@ -37,7 +37,14 @@ public class BasicRayTracer extends RayTracerBase {
      * The minimum value for which we will do the color calculation
      */
     private static final double MIN_CALC_COLOR_K = 0.001;
-
+    /**
+     * the amount of rays in the beam for soft shadow
+     */
+    private int _amountOfRaysForSoftShadow = 1;
+    /**
+     * the radius of the point/spot light source, we using it when we calculate the shadow rays
+     */
+    private double _radiusOfLightSource = 1;
     /**
      * A function that calculates the pixel color that the beam crosses
      * @param ray the ray from the camera through the pixel to the body
@@ -211,9 +218,9 @@ public class BasicRayTracer extends RayTracerBase {
      * @param l vector from the light source
      * @param n Normal vector to point
      * @param geoPoint point on the geometry
-     * @return
+     * @return ktr value
      */
-    private double transparency(LightSource ls, Vector l, Vector n, GeoPoint geoPoint) {
+    private double transparency1(LightSource ls, Vector l, Vector n, GeoPoint geoPoint) {
         Vector lightDirection = l.scale(-1); // from point to light source
 //        Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : -DELTA);//check if the dot prodact -/+
 //        Point3D point = gp.point.add(delta);
@@ -279,5 +286,78 @@ public class BasicRayTracer extends RayTracerBase {
         }
         return closesPoint;
     }
+
+    /**
+     * Calculate the transparency of the shadow in a point
+     *
+     * @param ls light source
+     * @param l vector from the light to the point
+     * @param n normal
+     * @param geopoint the point we want to calculate the shadow
+     * @return the transparency of the shadow in a point
+     */
+    private double transparency(LightSource ls, Vector l, Vector n, GeoPoint geopoint) {
+        Vector lightDirection = l.scale(-1); // from point to light source
+        double ktrAll = 0.0, ktrMain;
+        Ray lightRay = new Ray(geopoint.point, lightDirection, n); // new ray from the geoPoint to the light source
+        ktrMain = getKtr(ls, geopoint, lightRay);
+        if (_amountOfRaysForSoftShadow > 1) {
+            Beam beam = new Beam(lightRay,//the main ray
+                    geopoint.point.add(lightDirection.scale(ls.getDistance(geopoint.point))),//the location of the light
+                    _radiusOfLightSource,//the radius of the light source
+                    _amountOfRaysForSoftShadow);//amount of shadow rays to create
+            for (int i = 1; i < beam._rayList.size(); i++) {
+                ktrAll += getKtr(ls, geopoint, beam._rayList.get(i));
+            }
+            ktrMain = (ktrAll) / beam._rayList.size();
+        }
+        return ktrMain;
+    }
+
+    /**
+     * return the value of the attenuation of the shadow
+     * @param ls the light source
+     * @param geopoint the point we want to calculate the shadow in
+     * @param lightRay the light ray
+     * @return attenuation of the shadow in the given point
+     */
+    private double getKtr(LightSource ls, GeoPoint geopoint, Ray lightRay) {
+        double ktr = 1;
+        List<GeoPoint> intersections = _scene.geometries.findGeoIntersections(lightRay);
+        if (intersections != null) {
+            double lightDistance = ls.getDistance(geopoint.point);
+            for (GeoPoint gp : intersections) { // For each point of intersection we become more opaque (opaque == atimut)
+                if (alignZero(gp.point.distance(geopoint.point) - lightDistance) <= 0) {
+                    ktr *= gp.geometry.getMaterial().Kt; // if something in middle ktr*this.kt
+                    if (ktr < MIN_CALC_COLOR_K) {// If it is below the minimum then returns 0
+                        return 0.0;
+                    }
+                }
+            }
+        }
+        return ktr;
+    }
+
+
+    /**
+     * set the amount of ray to create in the beam for the soft shadow,1 or less to disable
+     * @param amountOfRaysForSoftShadow the amount of rays
+     */
+    public BasicRayTracer setAmountOfRaysForSoftShadow(int amountOfRaysForSoftShadow) {
+        if (amountOfRaysForSoftShadow < 1)
+            amountOfRaysForSoftShadow = 1;
+        _amountOfRaysForSoftShadow = amountOfRaysForSoftShadow;
+        return this;
+    }
+
+    /**
+     * set the radius of the lights sources in the scene
+     * @param radiusOfLights the radius
+     */
+    public BasicRayTracer setRadiusOfLightSource(double radiusOfLights) {
+        _radiusOfLightSource = radiusOfLights;
+        return this;
+    }
+
 
 }

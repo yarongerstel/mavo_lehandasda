@@ -152,6 +152,20 @@ public class Vector {
 
         return new Vector(this._head).normalize();
     }
+    /**
+     * This function create and return a new vector that is vertical to this vector
+     * @return the vertical vector
+     */
+    public Vector getVertical() {
+        if (_head._x._coord <= _head._y._coord && _head._x._coord <= _head._z._coord)
+            return new Vector(0.0, _head._z._coord * -1, _head._y._coord).normalize();
+        else if (_head._y._coord <= _head._x._coord && _head._y._coord <= _head._z._coord)
+            return new Vector(_head._z._coord * -1, 0.0, _head._x._coord).normalize();
+        else if (_head._x._coord == 0 && _head._y._coord == 0)
+            return new Vector(1.0, 1.0, 0.0).normalize();
+        else
+            return new Vector(_head._y._coord * -1, _head._x._coord, 0.0).normalize();
+    }
 
     @Override
     public String toString() {

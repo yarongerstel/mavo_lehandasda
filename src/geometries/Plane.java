@@ -89,5 +89,21 @@ public class Plane extends Geometry {
         }
         return null;
     }
+    /**
+     * the function checks if a point is in the plane
+     *
+     * @param p a point
+     * @return true if the point is in the plane else false
+     */
+    public boolean isPointInPlane(Point3D p) {
+        // Plane equation: aX + bY + cZ + d = 0
+        double a = _normal.get_head().getX(),
+                b = _normal.get_head().getY(),
+                c = _normal.get_head().getZ(),
+                d = -a * _p0.getX() - b * _p0.getY() - c * _p0.getZ();
+
+        // Placing the point in the plane equation
+        return (a * p.getX() + b * p.getY() + c * p.getZ() + d) == 0;
+    }
 
 }

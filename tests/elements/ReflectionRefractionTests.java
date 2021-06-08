@@ -1,12 +1,11 @@
 package elements;
 
+import geometries.Cylinder;
+import geometries.Plane;
 import geometries.Sphere;
 import geometries.Triangle;
 import org.junit.jupiter.api.Test;
-import primitives.Color;
-import primitives.Material;
-import primitives.Point3D;
-import primitives.Vector;
+import primitives.*;
 import renderer.BasicRayTracer;
 import renderer.ImageWriter;
 import renderer.Render;
@@ -110,11 +109,11 @@ public class ReflectionRefractionTests {
         scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point3D(60, 50, 0), new Vector(0, 0, -1)) //
                 .setKl(4E-5).setKq(2E-7));
 
-        ImageWriter imageWriter = new ImageWriter("refractionShadow", 600, 600);
+        ImageWriter imageWriter = new ImageWriter("refractionShadow1", 600, 600);
         Render render = new Render() //
                 .setImageWriter(imageWriter) //
                 .setCamera(camera) //
-                .setRayTracer(new BasicRayTracer(scene));
+                .setRayTracer(new BasicRayTracer(scene).setRadiusOfLightSource(5).setAmountOfRaysForSoftShadow(300));
 
         render.renderImage();
         render.writeToImage();
@@ -158,7 +157,49 @@ public class ReflectionRefractionTests {
         scene.lights.add(new SpotLight(new Color(200, 100, 100), new Point3D(2, 2, 500), new Vector(0, 0, -1)) //
                         .setKl(4E-5).setKq(2E-7));
 
-        ImageWriter imageWriter = new ImageWriter("myPicture", 600, 600);
+        ImageWriter imageWriter = new ImageWriter("myPicture1", 600, 600);
+        Render render = new Render() //
+                .setImageWriter(imageWriter) //
+                .setCamera(camera) //
+                .setRayTracer(new BasicRayTracer(scene).setRadiusOfLightSource(5).setAmountOfRaysForSoftShadow(300));
+
+        render.renderImage();
+        render.writeToImage();
+    }
+
+
+    @Test
+    public void myPicture2() {
+        Camera camera = new Camera(new Point3D(0, 0, 250), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+                .setViewPlaneSize(200, 200).setDistance(150);
+
+        scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
+
+        scene.geometries.add( //
+                new Plane(new Point3D(100, 0, 0), new Point3D(0, 100, 0), new Point3D(0, 0,0))
+                        .setEmission(new Color(java.awt.Color.blue))//
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60)), //
+                new Cylinder(new Ray((new Point3D(0, 0, 0)),new Vector(0,1,1)),3,20) //
+                       .setEmission(new Color(java.awt.Color.yellow))//
+                        .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30)), //
+//                new Triangle(new Point3D(100, 0, 0), new Point3D(0, 0, 0), new Point3D(0, 0, 100)) //
+//                        .setEmission(new Color(40,40,90))//
+//                        .setMaterial(new Material().setKr(1)), //
+
+
+                new Sphere(25, new Point3D(0, 0, 0)) //
+                        .setEmission(new Color(java.awt.Color.RED)) //
+                        .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30)));
+//                new Sphere(10, new Point3D(20.5, 10.5, 10)) //
+//                        .setEmission(new Color(java.awt.Color.GRAY)) //
+//                        .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30).setKt(0.6)));
+
+        scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point3D(600, 1000, 300), new Vector(-1, -1, -1)) //
+                .setKl(4E-5).setKq(2E-7));
+        scene.lights.add(new SpotLight(new Color(200, 100, 100), new Point3D(2, 2, 500), new Vector(0, 0, -1)) //
+               .setKl(4E-5).setKq(2E-7));
+
+        ImageWriter imageWriter = new ImageWriter("myPicture2.1", 600, 600);
         Render render = new Render() //
                 .setImageWriter(imageWriter) //
                 .setCamera(camera) //
@@ -167,4 +208,6 @@ public class ReflectionRefractionTests {
         render.renderImage();
         render.writeToImage();
     }
+
+
 }

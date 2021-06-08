@@ -34,7 +34,7 @@ public class Ray {
     }
 
     /**
-     * construct new ray offset by DELTA*normal(n)
+     * construct new ray offset by DELTA*normal(n) to get ray not on the square --> neer
      * @param point the point3D
      * @param l direction vector
      * @param n normal vector
