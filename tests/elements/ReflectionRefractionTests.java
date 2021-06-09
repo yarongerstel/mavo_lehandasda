@@ -1,6 +1,7 @@
 package elements;
 
 import geometries.Plane;
+import geometries.Polygon;
 import geometries.Sphere;
 import geometries.Triangle;
 import org.junit.jupiter.api.Test;
@@ -206,6 +207,10 @@ public class ReflectionRefractionTests {
                         .setEmission(new Color(40, 40, 90))//
                         .setMaterial(new Material().setKr(1)), //
 
+
+                new Polygon( new Point3D(10, 120, 20), new Point3D(200, 150, 20), new Point3D(350, 150, 20), new Point3D(25, 120, 20)) //
+                        .setEmission(new Color(java.awt.Color.RED)) //
+                        .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30).setKr(1)),
 
                 new Sphere(15, new Point3D(55, 190, 20)) //
                         .setEmission(new Color(java.awt.Color.RED)) //
