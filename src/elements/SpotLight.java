@@ -24,6 +24,7 @@ public class SpotLight extends PointLight{
         _direction = direction.normalized();
     }
 
+
     /**
      * Calculates the light intensity reflected at the point
      * @param p
