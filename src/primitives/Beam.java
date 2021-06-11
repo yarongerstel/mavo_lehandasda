@@ -11,35 +11,6 @@ import static primitives.Util.isZero;
  */
 public class Beam {
     public final List<Ray> _rayList;
-//
-//    /**
-//     * Constructor for beam through a rectangle
-//     * Is used in anti aliasing
-//     * @param rayMain the main ray
-//     * @param pC the center of the rectangle
-//     * @param height the height of the rectangle
-//     * @param width the width of the rectangle
-//     * @param amountRays the amount of rays to throw
-//     */
-//    public Beam(Ray rayMain, Point3D pC, double height, double width, int amountRays) {
-//        _rayList = new LinkedList<>();
-//        //adding the main ray to the list
-//        _rayList.add(rayMain);
-//        Vector vx = rayMain.getDirection().getVertical(),
-//                vy = vx.crossProduct(rayMain.getDirection());//two vertical vectors
-//        double x, y;
-//        Ray r;
-//        for (int i = 1; i < amountRays; i++) {
-//            do {
-//                //create random ray in the boundary of the rectangle that doesn't exist in the list already
-//                y = (Math.random() * (height)) - (height / 2) + rayMain.getPoint()._y._coord;//random number from -height/2 to height/2
-//                x = (Math.random() * (width)) - (width / 2) + rayMain.getPoint()._x._coord;//random number from -width/2 to width/2
-//                r = constructRay(rayMain, pC, x, y, vx, vy);
-//            } while (_rayList.contains(r));// check if the new ray is already exists in the list
-//            _rayList.add(r);
-//        }
-//    }
-
     /**
      * Constructor for beam through a circle(radios of light source)
      * Is used in soft shadow

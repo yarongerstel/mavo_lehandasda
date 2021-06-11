@@ -222,11 +222,8 @@ public class BasicRayTracer extends RayTracerBase {
      */
     private double transparency1(LightSource ls, Vector l, Vector n, GeoPoint geoPoint) {
         Vector lightDirection = l.scale(-1); // from point to light source
-//        Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : -DELTA);//check if the dot prodact -/+
-//        Point3D point = gp.point.add(delta);
         Ray lightRay = new Ray(geoPoint.point, lightDirection, n);  // new ray from the geoPoint to the light source
-        List<GeoPoint> intersections = _scene.geometries.findGeoIntersections(lightRay);    // if is intersection "intersections" not null
-//        if (intersections == null) return true;
+        List<GeoPoint> intersections = _scene.geometries.findGeoIntersections(lightRay);// if is intersection "intersections" not null
         double lightDistance = ls.getDistance(geoPoint.point);
         if (intersections == null)  // no intersection between the body and the light
             return 1d;
