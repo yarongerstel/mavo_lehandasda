@@ -79,6 +79,7 @@ public class Render {
      * the Renderer object
      */
     public void renderImage() {
+
         if (_imageWriter == null)
             throw new MissingResourceException(RESOURCE_ERROR, RENDER_CLASS, IMAGE_WRITER_COMPONENT);
         if (_camera == null)
@@ -101,6 +102,7 @@ public class Render {
      * the Renderer object - with multi-threading
      */
     private void renderImageThreaded() {
+
         final int nX = _imageWriter.getNx();
         final int nY = _imageWriter.getNy();
         final Pixel thePixel = new Pixel(nY, nX);
@@ -176,6 +178,7 @@ public class Render {
         }
         _imageWriter.writeToImage();
     }
+
 
 
     /**
@@ -297,5 +300,6 @@ public class Render {
                     }
         }
     }
+
 
 }

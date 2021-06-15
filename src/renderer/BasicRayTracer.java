@@ -45,6 +45,7 @@ public class BasicRayTracer extends RayTracerBase {
      * the radius of the point/spot light source, we using it when we calculate the shadow rays
      */
     private double _radiusOfLightSource = 1;
+
     /**
      * A function that calculates the pixel color that the beam crosses
      * @param ray the ray from the camera through the pixel to the body
@@ -356,6 +357,7 @@ public class BasicRayTracer extends RayTracerBase {
         _radiusOfLightSource = radiusOfLights;
         return this;
     }
+
 
 
 }

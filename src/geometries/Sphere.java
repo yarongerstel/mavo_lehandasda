@@ -23,6 +23,7 @@ public class Sphere extends Geometry{
     public Sphere(double radius, Point3D center) {
         _center = center;
         _radius = radius;
+        createBox();
     }
 
     /**
@@ -82,5 +83,26 @@ public class Sphere extends Geometry{
         // tow intersections
         return List.of(new GeoPoint(this,ray.getTargetPoint(t1)),new GeoPoint(this,ray.getTargetPoint(t2)));
     }
+
+    @Override
+    public Box getBox() {
+        return _box;
+    }
+
+
+    /**
+     * creating a box around the sphere
+     */
+    private void createBox(){
+        double xmin, xmax, ymin, ymax, zmin, zmax;
+        xmin = this._center.getX() - this._radius;
+        xmax = this._center.getX() + this._radius;
+        ymin = this._center.getY() - this._radius;
+        ymax = this._center.getY() + this._radius;
+        zmin = this._center.getZ() - this._radius;
+        zmax = this._center.getZ() + this._radius;
+        this._box = new Box(new Point3D(xmin, ymin, zmin),new Point3D(xmax, ymax ,zmax));
+    }
+
 }
 

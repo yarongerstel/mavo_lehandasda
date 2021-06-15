@@ -50,6 +50,7 @@ public class Polygon extends Geometry {
         if (vertices.length < 3)
             throw new IllegalArgumentException("A polygon can't have less than 3 vertices");
         this.vertices = List.of(vertices);
+        createBox();
         // Generate the plane according to the first three vertices and associate the
         // polygon with this plane.
         // The plane holds the invariant normal (orthogonal unit) vector to the polygon
@@ -126,4 +127,26 @@ public class Polygon extends Geometry {
         intersections.get(0).geometry = this;
         return intersections;
     }
+    @Override
+    public Box getBox() {
+        return _box;
+    }
+    /**
+     * crating a box around the geometry
+     */
+    private void createBox(){
+        double xmin =Double.POSITIVE_INFINITY, ymin = Double.POSITIVE_INFINITY, zmin = Double.POSITIVE_INFINITY,
+                xmax = Double.NEGATIVE_INFINITY, ymax = Double.NEGATIVE_INFINITY, zmax = Double.NEGATIVE_INFINITY;
+        for(var vertic :vertices){
+            xmin = Math.min(xmin,vertic.getX());
+            ymin = Math.min(ymin,vertic.getY());
+            zmin = Math.min(zmin,vertic.getZ());
+            xmax = Math.max(xmax, vertic.getX());
+            ymax = Math.max(ymax, vertic.getY());
+            zmax = Math.max(zmax, vertic.getZ());
+        }
+        _box = new Box(new Point3D(xmin, ymin, zmin), new Point3D(xmax, ymax, zmax));
+    }
+
+
 }

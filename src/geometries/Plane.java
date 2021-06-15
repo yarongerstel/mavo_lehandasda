@@ -23,6 +23,7 @@ public class Plane extends Geometry {
     public Plane(Point3D q0, Vector normal) {
         _p0 = q0;
         _normal = normal;
+        createBox();
     }
 
     /**
@@ -39,6 +40,7 @@ public class Plane extends Geometry {
         Vector cross = v1.crossProduct(v2);
         //if the v1 and v2 are parallel trow exception
         _normal = cross.normalize();
+        createBox();
     }
 
     /**
@@ -106,4 +108,15 @@ public class Plane extends Geometry {
         return (a * p.getX() + b * p.getY() + c * p.getZ() + d) == 0;
     }
 
+    /**
+     * plane is an infinite object
+     */
+    void createBox(){
+        _box=new Box(new Point3D(Double.NEGATIVE_INFINITY,Double.NEGATIVE_INFINITY,Double.NEGATIVE_INFINITY),
+                new Point3D(Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY));
+    }
+    @Override
+    public Box getBox() {
+        return _box;
+    }
 }

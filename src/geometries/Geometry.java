@@ -17,6 +17,7 @@ public abstract class Geometry implements Intersectable {
      * the material properties
      */
     private Material _material = new Material();
+    protected Box _box;
 
     public Material getMaterial() {
         return _material;
@@ -58,4 +59,14 @@ public abstract class Geometry implements Intersectable {
      */
     public abstract Vector getNormal(Point3D point);
 
+
+    @Override
+    public Box getBox() {
+        return new Box(_box._min, _box._max);
+    }
+
+    @Override
+    public void BVH(int deep) {
+        return;
+    }
 }
