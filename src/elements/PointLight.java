@@ -13,15 +13,15 @@ public class PointLight extends Light implements LightSource {
      */
     private final Point3D _position;
     /**
-     * todo
+     * const
      */
     private double _Kc = 1;
     /**
-     * todo
+     * linear
      */
     private double _Kl = 0;
     /**
-     * todo
+     * Squares
      */
     private double _Kq = 0;
 

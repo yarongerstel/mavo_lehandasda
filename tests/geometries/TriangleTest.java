@@ -21,17 +21,17 @@ class TriangleTest {
         // TC01: Ray is inside triangle
         List<Point3D> result=triangleTest.findIntersections(new Ray(new Point3D(-0.5,-0.5,-1), vector));
         assertEquals(p,result.get(0),"Ray crosses triangle");
-        //TC02 נקודה בחוץ בזווית בין הצלעות
+        //TC02
         result=triangleTest.findIntersections(new Ray(new Point3D(-5,-2,-1), vector));
         assertEquals(null,result,"ray doesn't crosses the triangle");
-        //TC03 נקודה בחוץ ליד הצלע\
+        //TC03
         result=triangleTest.findIntersections(new Ray(new Point3D(-3,0,-1), vector));
         assertEquals(null,result,"ray doesn't crosses the triangle");
         // =============== Boundary Values Tests ==================
         //TC04 Ray begins inside the triangle
         result=triangleTest.findIntersections(new Ray(new Point3D(0.5,0.5,0), vector));
         assertEquals(null,result,"ray doesn't crosses the triangle");
-        //TC05 קרן מתחילה בחוץ בין הצלעות
+        //TC05
         result=triangleTest.findIntersections(new Ray(new Point3D(0.5,0.5,0), vector));
         assertEquals(null,result,"ray doesn't crosses the triangle");
         //TC06

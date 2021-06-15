@@ -141,7 +141,7 @@ public class BasicRayTracer extends RayTracerBase {
             double nl = alignZero(n.dotProduct(l));
 
             if (nl * nv > 0) { // sign(nl) == sing(nv)
-                if (unshaded(lightSource, l, n, geoPoint)) {    // if this light source don't make shadow
+                if (unshaded(lightSource, l, n, geoPoint)) {    // if this light source don't make absolute shadow
                     double ktr = transparency(lightSource, l, n, geoPoint); // shkifut
                     if (ktr * k > MIN_CALC_COLOR_K) {
                         Color lightIntensity = lightSource.getIntensity(geoPoint.point).scale(ktr);
@@ -187,7 +187,7 @@ public class BasicRayTracer extends RayTracerBase {
     }
 
     /**
-     * Checks if the point is shaded or not
+     * Checks if the point is shaded absolute or not(if something from the light cam to the point)
      * @param ls type of light source
      * @param l vector from the light source
      * @param n normal to the point
@@ -206,7 +206,7 @@ public class BasicRayTracer extends RayTracerBase {
             // Checks for each point of intersection, if it is between the body and the light, and if is Non-transparent
             // - returns a false (shaded)
             if (alignZero(gp.point.distance(geoPoint.point) - lightDistance) <= 0 &&
-                    gp.geometry.getMaterial().Kt == 0)
+                    gp.geometry.getMaterial().Kt == 0)//kt==0 atom legamrey
                 return false;
         }
         return true;    //return true if have geoPoint between the body and the light, and is transparent
@@ -298,7 +298,8 @@ public class BasicRayTracer extends RayTracerBase {
         double ktrAll = 0.0, ktrMain;
         Ray lightRay = new Ray(geopoint.point, lightDirection, n); // new ray from the geoPoint to the light source
         ktrMain = getKtr(ls, geopoint, lightRay);
-        if (_amountOfRaysForSoftShadow > 1) {
+        if (_amountOfRaysForSoftShadow > 1)
+        {
             Beam beam = new Beam(lightRay,//the main ray
                     geopoint.point.add(lightDirection.scale(ls.getDistance(geopoint.point))),//the location of the light
                     _radiusOfLightSource,//the radius of the light source
