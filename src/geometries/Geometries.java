@@ -48,17 +48,19 @@ public class Geometries implements Intersectable{
     }
 
     @Override
-    public List<GeoPoint> findGeoIntersections(Ray ray) {
-        if(!box.inBox(ray)){
-            return null;
+    public List<GeoPoint> findGeoIntersections(Ray ray,boolean BVH) {
+        if(BVH) {
+            if (!box.inBox(ray)) {
+                return null;
+            }
         }
         List<GeoPoint> answer = null;
         for (var shape: intersectables) {
-            if (shape.findGeoIntersections(ray) != null) {
+            if (shape.findGeoIntersections(ray,BVH) != null) {
                 if(answer==null){
                     answer=new LinkedList<>();
                 }
-                answer.addAll(shape.findGeoIntersections(ray));
+                answer.addAll(shape.findGeoIntersections(ray,BVH));
             }
         }
         return answer;

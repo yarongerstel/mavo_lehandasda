@@ -64,7 +64,7 @@ public class Sphere extends Geometry{
      */
 
     @Override
-    public List<GeoPoint> findGeoIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray,boolean BVH) {
         if (ray.getPoint().equals(_center))    // if the point of ray is equal to center
             return List.of(new GeoPoint(this,ray.getTargetPoint(_radius))); // return the point on the sphere
         Vector u = _center.subtract(ray.getPoint());    // u is vector from the ray to the center

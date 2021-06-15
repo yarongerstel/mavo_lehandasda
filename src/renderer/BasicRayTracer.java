@@ -13,6 +13,8 @@ import static primitives.Util.alignZero;
  * A class whose job is to calculate the color of the dot and uses global and local effects calculations including shadow consideration
  */
 public class BasicRayTracer extends RayTracerBase {
+    private boolean BVH=false;
+
     /**
      * constructor
      * @param scene
@@ -56,6 +58,7 @@ public class BasicRayTracer extends RayTracerBase {
         GeoPoint closestPoint = findClosestIntersection(ray);
         return closestPoint == null ? _scene.background : calcColor(closestPoint, ray);
     }
+
 
     /**
      * @param closestPoint geopoint on shape
@@ -200,7 +203,7 @@ public class BasicRayTracer extends RayTracerBase {
         Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : -DELTA);  //check if the dot prodact -/+
         Point3D point = geoPoint.point.add(delta);  // move the point by delta
         Ray lightRay = new Ray(point, lightDirection, n);   // new ray from the geoPoint to the light source
-        List<GeoPoint> intersections = _scene.geometries.findGeoIntersections(lightRay);
+        List<GeoPoint> intersections = _scene.geometries.findGeoIntersections(lightRay,BVH);
         if (intersections == null) return true; //if is intersection "intersections" not null
         double lightDistance = ls.getDistance(geoPoint.point);
         for (GeoPoint gp : intersections) {
@@ -224,7 +227,7 @@ public class BasicRayTracer extends RayTracerBase {
     private double transparency1(LightSource ls, Vector l, Vector n, GeoPoint geoPoint) {
         Vector lightDirection = l.scale(-1); // from point to light source
         Ray lightRay = new Ray(geoPoint.point, lightDirection, n);  // new ray from the geoPoint to the light source
-        List<GeoPoint> intersections = _scene.geometries.findGeoIntersections(lightRay);// if is intersection "intersections" not null
+        List<GeoPoint> intersections = _scene.geometries.findGeoIntersections(lightRay,BVH);// if is intersection "intersections" not null
         double lightDistance = ls.getDistance(geoPoint.point);
         if (intersections == null)  // no intersection between the body and the light
             return 1d;
@@ -271,7 +274,7 @@ public class BasicRayTracer extends RayTracerBase {
         GeoPoint closesPoint = null;
         double colsesDistance = Double.MAX_VALUE;
         Point3D ray_p0 = ray.getPoint();
-        List<GeoPoint> intersections = _scene.geometries.findGeoIntersections(ray);
+        List<GeoPoint> intersections = _scene.geometries.findGeoIntersections(ray,BVH);
         if (intersections == null)
             return null;
 
@@ -322,7 +325,7 @@ public class BasicRayTracer extends RayTracerBase {
      */
     private double getKtr(LightSource ls, GeoPoint geopoint, Ray lightRay) {
         double ktr = 1;
-        List<GeoPoint> intersections = _scene.geometries.findGeoIntersections(lightRay);
+        List<GeoPoint> intersections = _scene.geometries.findGeoIntersections(lightRay,BVH);
         if (intersections != null) {
             double lightDistance = ls.getDistance(geopoint.point);
             for (GeoPoint gp : intersections) { // For each point of intersection we become more opaque (opaque == atimut)
@@ -355,6 +358,10 @@ public class BasicRayTracer extends RayTracerBase {
      */
     public BasicRayTracer setRadiusOfLightSource(double radiusOfLights) {
         _radiusOfLightSource = radiusOfLights;
+        return this;
+    }
+    public BasicRayTracer setBVH(){
+        BVH=true;
         return this;
     }
 

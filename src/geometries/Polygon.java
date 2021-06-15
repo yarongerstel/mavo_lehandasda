@@ -99,9 +99,9 @@ public class Polygon extends Geometry {
      * @return List<Point3D> return list of the intersection points, null if not exists
      */
     @Override
-    public List<GeoPoint> findGeoIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray,boolean BVH) {
         // find intersection with the plane
-        List<GeoPoint> intersections = plane.findGeoIntersections(ray);
+        List<GeoPoint> intersections = plane.findGeoIntersections(ray,BVH);
         if (intersections == null) return null;
 
         Point3D p0 = ray.getPoint();

@@ -121,7 +121,7 @@ public interface Intersectable {
      * @return List of point the ray Intersections
      */
     default List<Point3D> findIntersections(Ray ray) {
-        var geoList = findGeoIntersections(ray);
+        var geoList = findGeoIntersections(ray,false);
         return geoList == null ? null
                 : geoList.stream()
                 .map(gp -> gp.point)
@@ -133,7 +133,7 @@ public interface Intersectable {
      * @param ray
      * @returnList all the GeoPoint on the geometric shape that the beam cuts
      */
-    List<GeoPoint> findGeoIntersections(Ray ray);
+    List<GeoPoint> findGeoIntersections(Ray ray,boolean BVH);
 
 
 }
