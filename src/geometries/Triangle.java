@@ -42,7 +42,7 @@ public class Triangle extends Polygon {
      */
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray,boolean BVH) {
-        List<GeoPoint> intersections = plane.findGeoIntersections(ray,BVH);
+        List<GeoPoint> intersections = super.findGeoIntersections(ray,BVH);
         if (intersections == null)  // if not intersection on plane not intersection with triangle
             return null;
         Vector v = ray.getDirection();

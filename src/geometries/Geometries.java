@@ -34,14 +34,14 @@ public class Geometries implements Intersectable{
         double Ymin = box._min.getY();
         double Zmax = box._max.getZ();
         double Zmin = box._min.getZ();
-        for (var inter : _geometries){
+        for (var inter : _geometries){ // Finds the box size that will contain all the boxes
             Xmax = Math.max(Xmax,inter.getBox()._max.getX());
             Xmin = Math.min(Xmin,inter.getBox()._min.getX());
             Ymax = Math.max(Ymax,inter.getBox()._max.getY());
             Ymin = Math.min(Ymin,inter.getBox()._min.getY());
             Zmax = Math.max(Zmax,inter.getBox()._max.getZ());
             Zmin = Math.min(Zmin,inter.getBox()._min.getZ());
-        }
+        } // make the big box
         box._max = new Point3D(Xmax,Ymax,Zmax);
         box._min = new Point3D(Xmin,Ymin,Zmin);
         this.intersectables.addAll(Arrays.asList(_geometries));
@@ -50,7 +50,7 @@ public class Geometries implements Intersectable{
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray,boolean BVH) {
         if(BVH) {
-            if (!box.inBox(ray)) {
+            if (!box.intersectBox(ray)) {
                 return null;
             }
         }

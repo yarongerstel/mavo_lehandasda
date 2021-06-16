@@ -100,6 +100,11 @@ public class Polygon extends Geometry {
      */
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray,boolean BVH) {
+        if(BVH) {
+            if (!_box.intersectBox(ray)) {
+                return null;
+            }
+        }
         // find intersection with the plane
         List<GeoPoint> intersections = plane.findGeoIntersections(ray,BVH);
         if (intersections == null) return null;

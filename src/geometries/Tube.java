@@ -64,6 +64,11 @@ public class Tube extends Geometry {
      */
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray,boolean BVH) {
+        if(BVH) {
+            if (!_box.intersectBox(ray)) {
+                return null;
+            }
+        }
         return null;
     }
 

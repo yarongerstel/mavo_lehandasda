@@ -78,6 +78,11 @@ public class Plane extends Geometry {
 
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray,boolean BVH) {
+        if(BVH) {
+            if (!_box.intersectBox(ray)) {
+                return null;
+            }
+        }
         if (ray.getPoint() == _p0)  // the ray start on the plane and not intersection
             return null;
         double isParallel = ray.getDirection().dotProduct(_normal); //parallel to the plane give 0
