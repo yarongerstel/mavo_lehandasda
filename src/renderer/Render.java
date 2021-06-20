@@ -44,7 +44,15 @@ public class Render {
         }
         return this;
     }
-
+    /**
+     * Set debug printing on
+     *
+     * @return the Render object itself
+     */
+    public Render setDebugPrint() {
+        print = true;
+        return this;
+    }
     /**
      *
      * @param camera to set

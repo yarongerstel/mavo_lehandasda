@@ -270,7 +270,6 @@ public class BasicRayTracer extends RayTracerBase {
     private GeoPoint findClosestIntersection(Ray ray) {
         if (ray == null)
             return null;
-
         GeoPoint closesPoint = null;
         double colsesDistance = Double.MAX_VALUE;
         Point3D ray_p0 = ray.getPoint();
@@ -360,6 +359,7 @@ public class BasicRayTracer extends RayTracerBase {
         _radiusOfLightSource = radiusOfLights;
         return this;
     }
+
     public BasicRayTracer setBVH(){
         BVH=true;
         return this;

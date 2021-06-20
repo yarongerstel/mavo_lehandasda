@@ -11,10 +11,15 @@ public class Geometries implements Intersectable{
     List<Intersectable> intersectables = new ArrayList<>();
     Box box;
 
+    /**
+     * copy constractor
+     * @param intersectables
+     */
     public Geometries(List<Intersectable> intersectables) {
         this.intersectables = intersectables;
         createBox();
     }
+
     public Geometries(Intersectable... _geometries){
         add(_geometries);
         createBox();
@@ -41,7 +46,7 @@ public class Geometries implements Intersectable{
             Ymin = Math.min(Ymin,inter.getBox()._min.getY());
             Zmax = Math.max(Zmax,inter.getBox()._max.getZ());
             Zmin = Math.min(Zmin,inter.getBox()._min.getZ());
-        } // make the big box
+        } // update the big box
         box._max = new Point3D(Xmax,Ymax,Zmax);
         box._min = new Point3D(Xmin,Ymin,Zmin);
         this.intersectables.addAll(Arrays.asList(_geometries));
@@ -117,19 +122,6 @@ public class Geometries implements Intersectable{
             if (deep > 0)
                 geometriesArr[i].BVH(deep);
         }
-    }
-
-    /**
-     * find minimum for some numbers.
-     * @param  numbers
-     * @return minimum of all numbers.
-     */
-    double minimum(double... numbers){
-        double min = numbers[0];
-        for (var mm : numbers){
-            min = Math.min(min, mm);
-        }
-        return min;
     }
 
 }

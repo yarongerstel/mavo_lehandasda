@@ -33,7 +33,7 @@ public interface Intersectable {
         public Box(Point3D min, Point3D max) {
             _max = max;
             _min = min;
-            mid = new Point3D(max.getX() + min.getX() / 2, max.getY() + min.getY() / 2, max.getZ() + min.getZ() / 2);
+            mid = new Point3D((max.getX() + min.getX()) / 2d, (max.getY() + min.getY()) / 2d, (max.getZ() + min.getZ()) / 2d);
         }
 
         public Point3D get_min() {
@@ -49,6 +49,7 @@ public interface Intersectable {
          * @return true if the ray intersect withe the box and false if not
          */
         public boolean intersectBox(Ray ray) {
+            if (ray.getDirection().get_head().getX()==0){return false;}
             double txmin = (_min.getX() - ray.getPoint().getX()) / ray.getDirection().get_head().getX();
             double txmax = (_max.getX() - ray.getPoint().getX()) / ray.getDirection().get_head().getX();
             if (txmin > txmax) {
@@ -56,6 +57,7 @@ public interface Intersectable {
                 txmax = txmin;
                 txmin = temp;
             }
+            if (ray.getDirection().get_head().getY()==0){return false;}
             double tymin = (_min.getY() - ray.getPoint().getY()) / ray.getDirection().get_head().getY();
             double tymax = (_max.getY() - ray.getPoint().getY()) / ray.getDirection().get_head().getY();
             if (tymin > tymax) {
@@ -70,6 +72,7 @@ public interface Intersectable {
 
             if (tymax < txmax)
                 txmax = tymax;
+            if (ray.getDirection().get_head().getZ()==0){return false;}
             double tzmin = (_min.getZ() - ray.getPoint().getZ()) / ray.getDirection().get_head().getZ();
             double tzmax = (_max.getZ() - ray.getPoint().getZ()) / ray.getDirection().get_head().getZ();
             if (tzmin > tzmax) {
@@ -81,6 +84,8 @@ public interface Intersectable {
                 return false;
             return true;
         }
+
+
 
 
     }
