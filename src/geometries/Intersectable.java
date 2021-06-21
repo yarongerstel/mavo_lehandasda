@@ -142,7 +142,7 @@ public interface Intersectable {
 
     /**
      * @param ray
-     * @returnList all the GeoPoint on the geometric shape that the beam cuts
+     * @return all the GeoPoint on the geometric shape that the beam cuts
      */
     List<GeoPoint> findGeoIntersections(Ray ray, boolean BVH);
 

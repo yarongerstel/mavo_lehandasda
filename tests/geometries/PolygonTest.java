@@ -14,7 +14,7 @@ public class PolygonTest {
 
     /**
      * Test method for
-     * {@link geometries.Polygon#Polygon(Point3D...}.
+     * Geometries.Polygon Polygon(Point3D...).
      */
     @Test
     public void testConstructor() {

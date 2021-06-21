@@ -96,7 +96,7 @@ public class Polygon extends Geometry {
      * Calculate intersection of ray with the polygon
      *
      * @param ray ray pointing toward a Geometry
-     * @return List<Point3D> return list of the intersection points, null if not exists
+     * @return List Point3D return list of the intersection points, null if not exists
      */
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray,boolean BVH) {
@@ -114,7 +114,7 @@ public class Polygon extends Geometry {
 
         Vector v1 = vertices.get(1).subtract(p0);
         Vector v2 = vertices.get(0).subtract(p0);
-        // The point is inside if all 𝒗 ∙ 𝑵𝒊 have the same sign
+        // The point is inside if all v*ni have the same sign
         double sign = v.dotProduct(v1.crossProduct(v2));
         if (isZero(sign))
             return null;

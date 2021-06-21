@@ -58,7 +58,7 @@ public class Vector {
     /**
      * subtraction of vectors by a new vector, this - new
      * @param v the second vector
-     * @return subtraction of vectors by a new vector
+     * @return Vector from the right to the left
      */
     public Vector subtract(Vector v){
         return new Vector(_head._x._coord -v._head._x._coord,

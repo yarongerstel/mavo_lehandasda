@@ -589,7 +589,7 @@ public class ReflectionRefractionTests {
         Render render = new Render() //
                 .setImageWriter(imageWriter) //
                 .setCamera(camera) //
-                .setRayTracer(new BasicRayTracer(scene).setBVH())
+                .setRayTracer(new BasicRayTracer(scene).setBVH().setRadiusOfLightSource(10).setAmountOfRaysForSoftShadow(300))
                 .setMultithreading(3);
 
         render.renderImage();

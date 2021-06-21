@@ -50,9 +50,9 @@ public class Tube extends Geometry {
     public Vector getNormal(Point3D point) {
         Vector v = _axisRay.getDirection();
         Point3D P0 = _axisRay.getPoint();
-        double t = v.dotProduct(point.subtract(P0));
+        double t = v.dotProduct(point.subtract(P0));//rang from p0 to o
         Point3D O = P0.add(v.scale(t));
-        Vector sub = point.subtract(O);
+        Vector sub = point.subtract(O);// calc the vector from center to p (n)
         sub.normalize();
         return sub;
     }

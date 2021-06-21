@@ -17,12 +17,12 @@ public class Material {
 
     public int nShininess = 0;
     /**
-     * transparency
+     * transparency - atimot(0) shakof(1)
      */
     public double Kt = 0d;
     //kt+kr<=1
     /**
-     * reflection
+     * reflection - mara(1) lo mara(0)
      */
     public double Kr = 0d;
 

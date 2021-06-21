@@ -85,7 +85,7 @@ public class Point3D {
     /**
      *Creating a vector by subtracting between two points
      * @param ather point
-     * @return Vector The result of subtracting a vector by a point.
+     * @return Vector from the right to the left.
      */
     public Vector subtract(Point3D ather) {
         if (ather.equals(this)) {
