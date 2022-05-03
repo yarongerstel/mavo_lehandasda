@@ -42,7 +42,7 @@ public class Camera {
      */
     public Camera(Point3D p0, Vector vTO, Vector vUP) {
         if(!isZero(vUP.dotProduct(vTO))){   // Make sure the vectors are vertical
-            throw new IllegalArgumentException("up vector and  to vector arent orthogonal");
+            throw new IllegalArgumentException("up vector and  to vector are not orthogonal");
         }
         _P0 = p0;
         _vUP = vUP.normalized();
@@ -127,7 +127,7 @@ public class Camera {
         double Ry = _height / nY;
 
         Point3D Pij = Pc;
-        // Calculates the position of the pixel center
+        // Calculates the position of the pixel Center
         double Yi = -Ry * (i - (nY - 1) / 2d);
         double Xj = Rx * (j - (nX - 1) / 2d);
 
